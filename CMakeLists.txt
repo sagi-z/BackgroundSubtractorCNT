@@ -34,15 +34,17 @@ IF (BUILD_SHARED_LIBS)
         SET (LIB_TYPE SHARED)
 ENDIF ()
 
-INCLUDE (GenerateExportHeader)
 ADD_LIBRARY(bgsubcnt ${LIB_TYPE} ${bgsubcnt_SRC})
 
+IF(WIN32 AND NOT UNIX)
+INCLUDE (GenerateExportHeader)
 GENERATE_EXPORT_HEADER(bgsubcnt
              BASE_NAME bgsubcnt
              EXPORT_MACRO_NAME bgsubcnt_EXPORT
              EXPORT_FILE_NAME bgsubcnt_Export.h
              STATIC_DEFINE bgsubcnt_BUILT_AS_STATIC
 )
+ENDIF()
 
 OPTION(BUILD_TEST "Create and executable" OFF)
 IF (BUILD_TEST)
