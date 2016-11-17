@@ -1,4 +1,3 @@
-#include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
@@ -112,11 +111,13 @@ int main( int argc, char** argv )
         {
             namedWindow("BG", 1);
         }
+        cout << "Press 's' to save a frame to the current directory.\n"
+                "Use ESC to quit.\n" << endl;
     }
     double startTime = getTickCount();
     for(;;)
     {
-        Mat frame;
+        Mat frame, fgMask, fg, bg;
         cap >> frame;
         if( frame.empty() )
         {
@@ -125,14 +126,12 @@ int main( int argc, char** argv )
         Mat gray;
         cvtColor(frame, gray, COLOR_BGR2GRAY);
 
-        Mat fgMask;
         pBgSub->apply(gray, fgMask);
         if (hasGui)
         {
             imshow("Orig", frame);
             if (showFG)
             {
-                Mat fg;
                 frame.copyTo(fg, fgMask);
                 imshow("FG", fg);
             }
@@ -140,7 +139,6 @@ int main( int argc, char** argv )
 
         if (bgImage)
         {
-            Mat bg;
             pBgSub->getBackgroundImage(bg);
             if (hasGui)
             {
@@ -154,6 +152,15 @@ int main( int argc, char** argv )
             if (c == 27)
             {
                 break;
+            }
+            else if (c == 's')
+            {
+                cv::imwrite("frame.jpg", frame);
+                cv::imwrite("fg.jpg", fg);
+                if (bgImage)
+                {
+                    cv::imwrite("bg.jpg", bg);
+                }
             }
         }
     }
