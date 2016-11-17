@@ -38,7 +38,7 @@ make
 ```
 
 ### Install simplest option 1 (Win/Linux/Mac):
-copy/move the bgsubcnt.cpp to your sources and bgsubcnt.hpp to your headers.
+copy/move the bgsubcnt.cpp to your sources and bgsubcnt.h to your headers.
 
 ### Install option 1 for Linux (from the build directory):
 ```
