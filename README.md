@@ -1,12 +1,20 @@
-# The BackgroundSubtractorCNT project (CNT stands for 'CouNT).
+The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
+===========================================================
 
 * BackgroundSubtractorCNT is a drop in replacement API for the background subtraction solutions supplied with OpenCV.
 * It is much **faster** than any other background subtraction solutions in OpenCV-3.1.0 without NVidia CUDA, on low spec hardware.
 
 [For more details see (pending post)](https://www.theimpossiblecode.com/blog/upcoming-posts "the impossible code")
 
-## How much faster is it?
-[See output of benchmarking on Raspberry Pi3](#Using the demo)
+How much faster is it?
+----------------------
+Here is an output of benchmarking on Raspberry Pi3 both *MOG2* and *CNT* BackgroundSubtractors:
+```
+pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
+Execution took 40.964450 seconds.
+pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="CNT"
+Execution took 17.633301 seconds.
+```
 
 ## Building / Installing
 ### Prepare to build
@@ -46,7 +54,8 @@ sudo dpkg -i ./bgsubcnt-1.0.0-Linux.deb
 ### Windows
 Assuming you know how to use cmake with OpenCV - use it (you can even build the package target if you installed 'NSIS')
 
-## Usage
+Usage
+-----
 
 ### Linux
 Assuming installation in '/usr/local', add to cflags '-I/usr/local/include' and to link flags '-L/usr/local/lib -lbgsubcnt'
