@@ -6,7 +6,7 @@
 [For more details see (pending post)](https://www.theimpossiblecode.com/blog/upcoming-posts "the impossible code")
 
 ## How much faster is it?
-[See output of benchmarking on Raspberry Pi3](### Using the demo)
+[See output of benchmarking on Raspberry Pi3](#Using the demo)
 
 ## Building / Installing
 ### Prepare to build
