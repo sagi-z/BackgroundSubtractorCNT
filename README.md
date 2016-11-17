@@ -13,7 +13,7 @@ Here is an output of benchmarking on Raspberry Pi3 both *MOG2* and *CNT* Backgro
 pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
 Execution took 40.964450 seconds.
 pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="CNT"
-Execution took 17.633301 seconds. :+1:
+Execution took 17.633301 seconds.
 ```
 
 ## Building / Installing
