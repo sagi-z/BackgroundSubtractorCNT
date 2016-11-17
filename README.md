@@ -14,9 +14,15 @@ mkdir build
 cd build
 ```
 
-### By default cmake is building for release, static lib
+### By default cmake is building for release, static lib, without the demo
 ```
 cmake ..
+make
+```
+
+### Here is how to alter the defaults
+```
+cmake -DBUILD_TEST=ON -BUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=DEBUG ..
 make
 ```
 
