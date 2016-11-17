@@ -17,13 +17,7 @@ cd build
 ### By default cmake is building for release, static lib
 ```
 cmake ..
-```
-
-### More cmake options:
-```
--DCMAKE_BUILD_TYPE=Debug
--DBUILD_SHARED_LIBS=ON
--DBUILD_TEST=ON
+make
 ```
 
 ### Install simplest option 1 (Win/Linux/Mac):
