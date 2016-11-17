@@ -5,6 +5,9 @@
 
 [For more details see (pending post)](https://www.theimpossiblecode.com/blog/upcoming-posts "the impossible code")
 
+## How much faster is it?
+[See output of benchmarking on Raspberry Pi3](### Using the demo)
+
 ## Building / Installing
 ### Prepare to build
 ```
@@ -22,7 +25,7 @@ make
 
 ### Here is how to alter the defaults
 ```
-cmake -DBUILD_TEST=ON -BUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=DEBUG ..
+cmake -DBUILD_TEST=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=DEBUG ..
 make
 ```
 
@@ -97,3 +100,41 @@ make sure the include path and link path and library are set correctly.
 ...
     }
 ```
+
+### Using the demo (from the 'build' directory)
+* help message
+```
+pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -h
+BackgroundSubtractorCNT demo/benchmark/comparison
+Usage: demo [params] 
+
+	-?, -h, --help, --usage (value:true)
+		print this message
+	--bg
+		calculate also the background
+	--file
+		use file (default is system camera)
+	--nogui
+		run without GUI to measure times
+	--type (value:CNT)
+		bg subtraction type from - CNT/MOG2/KNN
+```
+
+* For benchmarking, use '-nogui', this was executed on Raspberry Pi3:
+```
+pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
+Execution took 40.964450 seconds.
+pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="CNT"
+Execution took 17.633301 seconds.
+```
+
+* For seeing the 'fg' quality use these:
+```
+./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -type="CNT"
+```
+
+* For seeing the 'fg' and 'bg' quality use these:
+```
+./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -type="CNT" -bg
+```
+
