@@ -84,7 +84,7 @@ make sure the include path and link path and library are set correctly.
             break;
         }
         cv::Mat gray;
-        cv::cvtColor(frame, gray, COLOR_BGR2GRAY);
+        cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
 
         cv::Mat fgMask;
         pBgSub->apply(gray, fgMask);
