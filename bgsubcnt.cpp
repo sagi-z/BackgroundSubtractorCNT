@@ -376,7 +376,7 @@ void BackgroundSubtractorCNTImpl::apply(InputArray image, OutputArray _fgmask, d
     }
     else
     {
-        functor = new BGSubtractPixel(minPixelStability, threshold, frame, prevFrame, fgMask);
+        functor = new BGSubtractPixel(minPixelStability, threshold*3, frame, prevFrame, fgMask);
     }
 
     if (isParallel)
