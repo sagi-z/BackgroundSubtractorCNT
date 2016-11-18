@@ -51,8 +51,8 @@ ENDIF()
 
 OPTION(BUILD_TEST "Create and executable" OFF)
 IF(BUILD_TEST)
-        add_executable(demo ${bgsubcnt_SRC_TST})
-        target_link_libraries (demo bgsubcnt ${OpenCV_LIBS})
+        ADD_EXECUTABLE(demo ${bgsubcnt_SRC_TST})
+        TARGET_LINK_LIBRARIES (demo bgsubcnt ${OpenCV_LIBS})
 ENDIF()
 
 INSTALL(TARGETS bgsubcnt
