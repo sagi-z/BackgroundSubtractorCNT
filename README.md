@@ -4,7 +4,7 @@ The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 * BackgroundSubtractorCNT is a drop in replacement API for the background subtraction solutions supplied with OpenCV.
 * It is much **faster** than any other background subtraction solutions in OpenCV-3.1.0 without NVidia CUDA, on low spec hardware.
 
-[For more details see (pending post)](https://www.theimpossiblecode.com/blog/upcoming-posts "the impossible code")
+[For more details see my blog](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
 
 How much faster is it?
 ----------------------
