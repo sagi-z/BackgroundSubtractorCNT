@@ -61,6 +61,22 @@ Usage
 ### Linux
 Assuming installation in '/usr/local', add to cflags '-I/usr/local/include' and to link flags '-L/usr/local/lib -lbgsubcnt'
 
+Here is a minimal *CMakeLists.txt* example:
+```
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+PROJECT(myapp)
+
+FIND_PACKAGE(OpenCV 3.1.0 REQUIRED)
+
+INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIRS} "/usr/local/include")
+
+ADD_EXECUTABLE(myapp main.cpp)
+
+FIND_LIBRARY(BGSUBCNT_LIB bgsubcnt "/usr/local/lib")
+TARGET_LINK_LIBRARIES (myapp ${BGSUBCNT_LIB} ${OpenCV_LIBS})
+```
+
 ### Windows
 make sure the include path and link path and library are set correctly.
 
