@@ -36,6 +36,7 @@ make
 cmake -DBUILD_TEST=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=DEBUG ..
 make
 ```
+(note that these are now the new defaults until you delete the *build/CMakeCache.txt* file)
 
 ### Install simplest option 1 (Win/Linux/Mac):
 copy/move the bgsubcnt.cpp to your sources and bgsubcnt.h to your headers.
