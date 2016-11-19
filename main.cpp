@@ -155,11 +155,11 @@ int main( int argc, char** argv )
             }
             else if (c == 's')
             {
-                cv::imwrite("frame.jpg", frame);
-                cv::imwrite("fg.jpg", fg);
+                imwrite("frame.jpg", frame);
+                imwrite("fg.jpg", fg);
                 if (bgImage)
                 {
-                    cv::imwrite("bg.jpg", bg);
+                    imwrite("bg.jpg", bg);
                 }
             }
         }
