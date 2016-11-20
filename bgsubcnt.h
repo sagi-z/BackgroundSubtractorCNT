@@ -50,7 +50,7 @@
 namespace cv
 {
 
-namespace bgsegm
+namespace bgsubcnt
 {
 
 /** @brief Background subtraction based on counting.

@@ -3,12 +3,13 @@
 
 #ifdef HAVE_OPENCV_CONTRIB
 #include <opencv2/bgsegm.hpp>
+using namespace cv::bgsegm;
 #endif
 
 #include "bgsubcnt.h"
 
 using namespace cv;
-using namespace cv::bgsegm;
+using namespace cv::bgsubcnt;
 using namespace std;
 
 const string keys =

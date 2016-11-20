@@ -98,7 +98,7 @@ make sure the include path and link path and library are set correctly.
         {
             fps = capture.get(CAP_PROP_FPS);
         }
-        pBgSub = cv::bgsegm::createBackgroundSubtractorCNT(fps, true, fps*60);
+        pBgSub = cv::bgsubcnt::createBackgroundSubtractorCNT(fps, true, fps*60);
     }
     else if (type == "MOG2")
     {
