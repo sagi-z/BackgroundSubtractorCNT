@@ -48,6 +48,9 @@
 namespace cv
 {
 
+namespace bgsegm
+{
+
 /** @brief Implementation of background subtraction based on counting.
  *  About as fast as MOG2 on a high end system (benchmarked on )
  *  More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3).
@@ -92,7 +95,7 @@ private:
     bool isParallel;
     // These 3 commented expressed in 1 'data' for faster single access
     //    Mat_<int> stability;        // data[0]  => Candidate for historyStability if pixel is ~same as in prevFrame
-    //    Mat_<int> history;          // data[1]  => Color which got most hits for the past maxPixelStability frames (~1 minute at 30 FPS by default)
+    //    Mat_<int> history;          // data[1]  => Color which got most hits for the past maxPixelStability frames
     //    Mat_<int> historyStability; // data[2]  => How many hits this pixel got for the color in history
     //    Mat_<int> background;       // data[3]  => Current background as detected by algorithm
     Mat_<Vec4i> data;
@@ -408,6 +411,8 @@ Ptr<BackgroundSubtractorCNT>
 createBackgroundSubtractorCNT(int minPixelStability, bool useHistory, int maxStability, bool isParallel)
 {
     return makePtr<BackgroundSubtractorCNTImpl>(minPixelStability, useHistory, maxStability, isParallel);
+}
+
 }
 
 }

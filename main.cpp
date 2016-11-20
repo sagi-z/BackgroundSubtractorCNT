@@ -8,6 +8,7 @@
 #include "bgsubcnt.h"
 
 using namespace cv;
+using namespace cv::bgsegm;
 using namespace std;
 
 const string keys =
@@ -68,7 +69,7 @@ int main( int argc, char** argv )
     Ptr<BackgroundSubtractor> pBgSub;
     if (type == "CNT")
     {
-        int fps = 30;
+        int fps = 15;
         if (hasFile)
         {
             fps = cap.get(CAP_PROP_FPS);
@@ -88,11 +89,11 @@ int main( int argc, char** argv )
 #ifdef HAVE_OPENCV_CONTRIB
     else if (type == "GMG")
     {
-        pBgSub = cv::bgsegm::createBackgroundSubtractorGMG();
+        pBgSub = createBackgroundSubtractorGMG();
     }
     else if (type == "MOG")
     {
-        pBgSub = cv::bgsegm::createBackgroundSubtractorMOG();
+        pBgSub = createBackgroundSubtractorMOG();
     }
 #endif
     else

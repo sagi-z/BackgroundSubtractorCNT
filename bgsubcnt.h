@@ -50,6 +50,9 @@
 namespace cv
 {
 
+namespace bgsegm
+{
+
 /** @brief Background subtraction based on counting.
  *  About as fast as MOG2 on a high end system.
  *  More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3).
@@ -92,11 +95,11 @@ public:
  * @param isParallel determines if we're parallelizing the algorithm
  * @return a smart pointer to a BackgroundSubtractorCNT
  * @note
- * The default values assume 30 FPS, in which a pixel which keeps it's value for ~ 1 second is
+ * The default values assume 15 FPS, in which a pixel which keeps it's value for ~ 1 second is
  * a stable background.
  * For history, a stable pixel will keep counting frames up to maxPixelStability. Changes will try
  * to decrement the count, but as long as it is above minPixelStability, is will remain stable. If FPS
- * is 30, then maxPixelStability of 30*60 means that a changes of ~ 60 seconds will make this pixel
+ * is 15, then maxPixelStability of 15*60 means that a changes of ~ 60 seconds will make this pixel
  * non-stable background.
  * Effect of learningRate in apply(..., learningRate) -
  * If learningRate == -1, then the algorithm is as stated above.
@@ -104,10 +107,12 @@ public:
  * If 0 < learningRate < 1, then maxPixelStability = "initial maxPixelStability" * learningRate
  */
 CV_EXPORTS_W Ptr<BackgroundSubtractorCNT>
-createBackgroundSubtractorCNT(int minPixelStability = 30,
+createBackgroundSubtractorCNT(int minPixelStability = 15,
                               bool useHistory = true,
-                              int maxPixelStability = 30*60,
+                              int maxPixelStability = 15*60,
                               bool isParallel = true);
+
+}
 
 }
 
