@@ -116,7 +116,7 @@ int main( int argc, char** argv )
         cout << "Press 's' to save a frame to the current directory.\n"
                 "Use ESC to quit.\n" << endl;
     }
-    double startTime = getTickCount();
+    int64 startTime = getTickCount();
     for(;;)
     {
         Mat frame, fgMask, fg, bg;

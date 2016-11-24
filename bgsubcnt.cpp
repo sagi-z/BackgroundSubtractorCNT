@@ -374,7 +374,7 @@ void BackgroundSubtractorCNTImpl::apply(InputArray image, OutputArray _fgmask, d
         {
             scaleMaxStability = learningRate;
         }
-        functor = new BGSubtractPixelWithHistory(minPixelStability, maxPixelStability * scaleMaxStability,
+        functor = new BGSubtractPixelWithHistory(minPixelStability, int(maxPixelStability * scaleMaxStability),
                                                  threshold, frame, prevFrame, fgMask);
     }
     else

@@ -47,6 +47,16 @@
 
 #include "opencv2/video.hpp"
 
+#if (defined WIN32 || defined _WIN32 || defined WINCE || defined __CYGWIN__) && defined CVAPI_EXPORTS
+#  define BGSUBCNT_EXPORTS __declspec(dllexport)
+#elif defined __GNUC__ && __GNUC__ >= 4
+#  define BGSUBCNT_EXPORTS __attribute__ ((visibility ("default")))
+#else
+#  define BGSUBCNT_EXPORTS
+#endif
+
+#define BGSUBCNT_EXPORTS_W BGSUBCNT_EXPORTS
+
 namespace cv
 {
 
@@ -59,7 +69,7 @@ namespace bgsubcnt
  *  Algorithm by Sagi Zeevi
  *  @see createBackgroundSubtractorCNT()
  */
-class CV_EXPORTS_W BackgroundSubtractorCNT  : public BackgroundSubtractor
+class BGSUBCNT_EXPORTS_W BackgroundSubtractorCNT  : public BackgroundSubtractor
 {
 public:
     // BackgroundSubtractor interface
@@ -106,7 +116,7 @@ public:
  * If learningRate == 0, it is as if you used 'useHistory = false'.
  * If 0 < learningRate < 1, then maxPixelStability = "initial maxPixelStability" * learningRate
  */
-CV_EXPORTS_W Ptr<BackgroundSubtractorCNT>
+BGSUBCNT_EXPORTS_W Ptr<BackgroundSubtractorCNT>
 createBackgroundSubtractorCNT(int minPixelStability = 15,
                               bool useHistory = true,
                               int maxPixelStability = 15*60,

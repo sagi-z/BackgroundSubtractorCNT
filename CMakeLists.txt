@@ -43,9 +43,9 @@ IF(WIN32 AND NOT UNIX)
 INCLUDE (GenerateExportHeader)
 GENERATE_EXPORT_HEADER(bgsubcnt
              BASE_NAME bgsubcnt
-             EXPORT_MACRO_NAME bgsubcnt_EXPORT
+             EXPORT_MACRO_NAME BGSUBCNT_EXPORTs
              EXPORT_FILE_NAME bgsubcnt_Export.h
-             STATIC_DEFINE bgsubcnt_BUILT_AS_STATIC
+             STATIC_DEFINE BGSUBCNT_BUILT_AS_STATIC
 )
 ENDIF()
 
