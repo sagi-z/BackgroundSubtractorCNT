@@ -25,31 +25,21 @@ IF(HAVE_OPENCV_CONTRIB)
     ADD_DEFINITIONS(-DHAVE_OPENCV_CONTRIB)
 ENDIF()
 
-# Allow the developer to select IF Dynamic or Static libraries are built
+# Allow the developer to select if Dynamic or Static libraries are built
 OPTION (BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 # Set the LIB_TYPE variable to STATIC
 SET(LIB_TYPE STATIC)
-IF(BUILD_SHARED_LIBS)
-        # User wants to build Shared Libraries, so change the LIB_TYPE variable to CMake keyword 'SHARED'
-        SET(LIB_TYPE SHARED)
-        IF(UNIX AND NOT WIN32)
+IF(NOT WIN32)
+    IF(BUILD_SHARED_LIBS)
+            # User wants to build Shared Libraries, so change the LIB_TYPE variable to CMake keyword 'SHARED'
+            SET(LIB_TYPE SHARED)
             SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/deb/postinst;${CMAKE_CURRENT_SOURCE_DIR}/deb/postrm;")
-        ENDIF()
+    ENDIF()
 ENDIF()
 
 ADD_LIBRARY(bgsubcnt ${LIB_TYPE} ${bgsubcnt_SRC})
 
-IF(WIN32 AND NOT UNIX)
-INCLUDE (GenerateExportHeader)
-GENERATE_EXPORT_HEADER(bgsubcnt
-             BASE_NAME bgsubcnt
-             EXPORT_MACRO_NAME BGSUBCNT_EXPORTs
-             EXPORT_FILE_NAME bgsubcnt_Export.h
-             STATIC_DEFINE BGSUBCNT_BUILT_AS_STATIC
-)
-ENDIF()
-
-OPTION(BUILD_TEST "Create and executable" OFF)
+OPTION(BUILD_TEST "Create a demo executable" OFF)
 IF(BUILD_TEST)
         ADD_EXECUTABLE(demo ${bgsubcnt_SRC_TST})
         TARGET_LINK_LIBRARIES (demo bgsubcnt ${OpenCV_LIBS})

@@ -73,7 +73,7 @@ int main( int argc, char** argv )
         int fps = 15;
         if (hasFile)
         {
-            fps = cap.get(CAP_PROP_FPS);
+            fps = int(cap.get(CAP_PROP_FPS));
         }
         pBgSub = createBackgroundSubtractorCNT(fps, true, fps*60);
     }

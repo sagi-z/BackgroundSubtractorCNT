@@ -47,15 +47,8 @@
 
 #include "opencv2/video.hpp"
 
-#if (defined WIN32 || defined _WIN32 || defined WINCE || defined __CYGWIN__) && defined CVAPI_EXPORTS
-#  define BGSUBCNT_EXPORTS __declspec(dllexport)
-#elif defined __GNUC__ && __GNUC__ >= 4
-#  define BGSUBCNT_EXPORTS __attribute__ ((visibility ("default")))
-#else
-#  define BGSUBCNT_EXPORTS
-#endif
-
-#define BGSUBCNT_EXPORTS_W BGSUBCNT_EXPORTS
+// just a future wrapper marker
+#define BGSUBCNT_EXPORTS_W
 
 namespace cv
 {
