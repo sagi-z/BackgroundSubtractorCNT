@@ -7,10 +7,10 @@ import numpy as np
 
 bgsubcnt_module = Extension('_bgsubcnt',
                            swig_opts=['-c++', '-builtin', '-I@CMAKE_CURRENT_SOURCE_DIR@'],
-                           sources=['@CMAKE_CURRENT_SOURCE_DIR@/opencv_swig_python.cpp', '@CMAKE_CURRENT_SOURCE_DIR@/bgsubcnt.i'],
+                           sources=['@CMAKE_CURRENT_SOURCE_DIR@/opencv_swig_python.cpp', '@CMAKE_CURRENT_SOURCE_DIR@/bgsubcnt.i', '@BGSUBCNT_INCLUDE_DIR@/bgsubcnt.cpp'],
 			   include_dirs=['@BGSUBCNT_INCLUDE_DIR@', np.get_include(), '@_OPENCV_INCLUDE_DIR@'],
-			   library_dirs=['@BGSUBCNT_LIB_DIR@', '@_OPENCV_LIB_DIR@'],
-			   libraries=['bgsubcnt', 'opencv_core']
+			   library_dirs=['@_OPENCV_LIB_DIR@'],
+			   libraries=['opencv_core']
                            )
 
 setup (name        = 'bgsubcnt',
