@@ -10,12 +10,32 @@ IF(PYTHON_EXTENSION)
                 CONFIGURE_FILE(${SETUP_PY_IN} ${SETUP_PY})
 
                 ADD_CUSTOM_COMMAND(OUTPUT ${OUTPUT}
-                                   COMMAND ${PYTHON} ${SETUP_PY} build
+                                   COMMAND ${PYTHON} ${SETUP_PY} install --home=.
                                    COMMAND ${CMAKE_COMMAND} -E touch ${OUTPUT})
 
-                ADD_CUSTOM_TARGET(target ALL DEPENDS ${OUTPUT})
+                ADD_CUSTOM_TARGET(bgsubcnt_python ALL DEPENDS ${OUTPUT})
+                
+                EXECUTE_PROCESS (
+                        COMMAND ${PYTHON} -c
+                        "import site, sys; sys.stdout.write(site.PREFIXES[-1])"
+                        OUTPUT_VARIABLE PYTHON_PREFIX
+                        )
+                FILE(TO_CMAKE_PATH "${PYTHON_PREFIX}" PYTHON_PREFIX)
+                EXECUTE_PROCESS (
+                        COMMAND ${PYTHON} -c
+                        "import site, sys; sys.stdout.write(site.getsitepackages()[-1])"
+                        OUTPUT_VARIABLE PYTHON_SITE_DIR
+                        )
+                FILE(TO_CMAKE_PATH "${PYTHON_SITE_DIR}" PYTHON_SITE_DIR)
+                STRING ( REGEX REPLACE "^${PYTHON_PREFIX}/" ""
+                        PYTHON_SITE_DIR "${PYTHON_SITE_DIR}"
+                        )
+                MESSAGE("PYTHON_PREFIX is ${PYTHON_PREFIX}")
+                MESSAGE("PYTHON_SITE_DIR is ${PYTHON_SITE_DIR}")
 
-                INSTALL(CODE "execute_process(COMMAND ${PYTHON} ${SETUP_PY} install)")
+                INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib/python/
+                        DESTINATION ${PYTHON_SITE_DIR}
+                        COMPONENT library)
         ELSE()
                 MESSAGE("python was not found")
         ENDIF()
