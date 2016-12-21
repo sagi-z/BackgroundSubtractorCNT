@@ -1,0 +1,25 @@
+"""
+setup.py file for bgsubcnt
+"""
+
+from distutils.core import setup, Extension
+import numpy as np
+
+bgsubcnt_module = Extension('_bgsubcnt',
+                           swig_opts=['-c++', '-builtin'],
+                           sources=['opencv_swig_python.cpp', 'bgsubcnt.i'],
+			   include_dirs=[np.get_include(), '@_OPENCV_INCLUDE_DIR@'],
+			   library_dirs=['@BGSUBCNT_LIB_DIR@', '@_OPENCV_LIB_DIR@'],
+			   libraries=['bgsubcnt', 'opencv_core']
+                           )
+
+setup (name        = 'bgsubcnt',
+       package_dir = {'': '@CMAKE_CURRENT_SOURCE_DIR@'},
+       version     = '${CPACK_PACKAGE_VERSION}',
+       author      = "Sagi Zeevi (theimpossiblecode.com)",
+       url         = 'https://github.com/sagi-z/BackgroundSubtractorCNT',
+       description = 'BackgroundSubtractorCNT python API',
+       ext_modules = [bgsubcnt_module],
+       py_modules  = ["bgsubcnt"],
+       requires    = ["numpy", "cv2"]
+       )

@@ -66,7 +66,7 @@ class BGSUBCNT_EXPORTS_W BackgroundSubtractorCNT  : public BackgroundSubtractor
 {
 public:
     // BackgroundSubtractor interface
-    CV_WRAP virtual void apply(InputArray image, OutputArray fgmask, double learningRate) = 0;
+    CV_WRAP virtual void apply(InputArray image, OutputArray fgmask, double learningRate=-1) = 0;
     CV_WRAP virtual void getBackgroundImage(OutputArray backgroundImage) const = 0;
 
     /// @see createBackgroundSubtractorCNT()

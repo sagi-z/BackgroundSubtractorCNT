@@ -17,7 +17,7 @@ const string keys =
         "{file           || use file (default is system camera)}"
         "{type           |CNT| bg subtraction type from - CNT/MOG2/KNN"
 #ifdef HAVE_OPENCV_CONTRIB
-        "GMG/MOG"
+        "/GMG/MOG"
 #endif
         "}"
         "{bg             || calculate also the background}"
