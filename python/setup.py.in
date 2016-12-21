@@ -19,6 +19,7 @@ setup (name        = 'bgsubcnt',
        author      = "Sagi Zeevi (theimpossiblecode.com)",
        url         = 'https://github.com/sagi-z/BackgroundSubtractorCNT',
        description = 'BackgroundSubtractorCNT python API',
+       license     = '3-clause BSD',
        ext_modules = [bgsubcnt_module],
        py_modules  = ["bgsubcnt"],
        requires    = ["numpy", "cv2"]

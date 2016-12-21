@@ -9,12 +9,19 @@ IF(PYTHON_EXTENSION)
 
                 CONFIGURE_FILE(${SETUP_PY_IN} ${SETUP_PY})
 
+                FILE(GLOB PyDep_SRC
+                        "*.h"
+                        "*.i"
+                        "*.cpp"
+                        )
+
                 ADD_CUSTOM_COMMAND(OUTPUT ${OUTPUT}
                                    COMMAND ${PYTHON} ${SETUP_PY} install --home=.
-                                   COMMAND ${CMAKE_COMMAND} -E touch ${OUTPUT})
+                                   COMMAND ${CMAKE_COMMAND} -E touch ${OUTPUT}
+                                   DEPENDS ${BGSUBCNT_LIB_DIR} ${PyDep_SRC})
 
                 ADD_CUSTOM_TARGET(bgsubcnt_python ALL DEPENDS ${OUTPUT})
-                
+
                 EXECUTE_PROCESS (
                         COMMAND ${PYTHON} -c
                         "import site, sys; sys.stdout.write(site.PREFIXES[-1])"
@@ -33,7 +40,7 @@ IF(PYTHON_EXTENSION)
                 MESSAGE("PYTHON_PREFIX is ${PYTHON_PREFIX}")
                 MESSAGE("PYTHON_SITE_DIR is ${PYTHON_SITE_DIR}")
 
-                INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib/python/
+                INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib/python/
                         DESTINATION ${PYTHON_SITE_DIR}
                         COMPONENT library)
         ELSE()
