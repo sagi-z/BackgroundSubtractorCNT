@@ -7,6 +7,13 @@ IF(PYTHON_EXTENSION)
                 SET(SETUP_PY    "${CMAKE_CURRENT_BINARY_DIR}/setup.py")
                 SET(OUTPUT      "${CMAKE_CURRENT_BINARY_DIR}/build/timestamp")
 
+                FOREACH(var CMAKE_CURRENT_SOURCE_DIR
+                            BGSUBCNT_INCLUDE_DIR
+                            _OPENCV_INCLUDE_DIR
+                            _OPENCV_LIB_DIR
+                            )
+                        FILE(TO_NATIVE_PATH ${${var}} ${var}_NATIVE)
+                ENDFOREACH()
                 CONFIGURE_FILE(${SETUP_PY_IN} ${SETUP_PY})
 
                 FILE(GLOB PyDep_SRC
