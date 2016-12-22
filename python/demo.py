@@ -6,6 +6,9 @@ import cv2
 import bgsubcnt
 import numpy as np
 
+ # A temporary solution to OpenCV 3.1.0 bug
+cv2.ocl.setUseOpenCL(False)
+
 def usage():
     print ("""BackgroundSubtractorCNT demo/benchmark/comparison
 Usage: demo.py [params] 
@@ -80,7 +83,7 @@ def main(argv):
             if bgImage:
                 bg = fgbg.getBackgroundImage()
                 cv2.imshow('BG',bg)
-            k = cv2.waitKey(1) & 0xff
+            k = cv2.waitKey(1)
             if k == 27:
                 break
         ret, frame = cap.read()
