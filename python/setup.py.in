@@ -3,18 +3,23 @@ setup.py file for bgsubcnt
 """
 
 from distutils.core import setup, Extension
+import os.path
 import numpy as np
 
 bgsubcnt_module = Extension('_bgsubcnt',
                            swig_opts=['-c++', '-builtin', '-I@CMAKE_CURRENT_SOURCE_DIR_NATIVE@'],
-                           sources=['@CMAKE_CURRENT_SOURCE_DIR_NATIVE@/opencv_swig_python.cpp', '@CMAKE_CURRENT_SOURCE_DIR_NATIVE@/bgsubcnt.i', '@BGSUBCNT_INCLUDE_DIR_NATIVE@/bgsubcnt.cpp'],
-			   include_dirs=['@BGSUBCNT_INCLUDE_DIR_NATIVE@', np.get_include(), '@_OPENCV_INCLUDE_DIR_NATIVE@'],
-			   library_dirs=['@_OPENCV_LIB_DIR_NATIVE@'],
-			   libraries=['opencv_core']
+                           sources=[
+                               os.path.join('@CMAKE_CURRENT_SOURCE_DIR_NATIVE@','opencv_swig_python.cpp'),
+                               os.path.join('@CMAKE_CURRENT_SOURCE_DIR_NATIVE@','bgsubcnt.i'),
+                               os.path.join('@BGSUBCNT_INCLUDE_DIR_NATIVE@','bgsubcnt.cpp') # would it be better to link with the shared lib?
+                               ],
+			   include_dirs=['@BGSUBCNT_INCLUDE_DIR_NATIVE@', np.get_include(), @OpenCV_INCLUDE_DIRS_NATIVE@],
+			   library_dirs=[@OpenCV_LIB_DIR_NATIVE@],
+			   libraries=[@OpenCV_LIBS_NATIVE@]
                            )
 
 setup (name        = 'bgsubcnt',
-       version     = '${CPACK_PACKAGE_VERSION}',
+       version     = '@CPACK_PACKAGE_VERSION@',
        package_dir = {'': '@CMAKE_CURRENT_SOURCE_DIR_NATIVE@'},
        author      = "Sagi Zeevi (theimpossiblecode.com)",
        url         = 'https://github.com/sagi-z/BackgroundSubtractorCNT',
