@@ -8,7 +8,7 @@ MACRO(NATIVE_STRING _VAR _RESULT)
 	SET(${_RESULT} "")
 	FILE(TO_NATIVE_PATH ${${_VAR}} VAR_NATIV)
 	STRING(REPLACE "\\" "\\\\" ${_RESULT} "${VAR_NATIV}")
-#	MESSAGE("_RESULT is: ${${_RESULT}}")
+        #MESSAGE("_RESULT is: ${${_RESULT}}")
 ENDMACRO()
 
 # Macro to replace _LST vaiable name with list of path contents to "native path" list,

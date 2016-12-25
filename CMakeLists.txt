@@ -23,7 +23,7 @@ IF(HAVE_OPENCV_CONTRIB)
 ENDIF()
 
 # Allow the developer to select if Dynamic or Static libraries are built
-OPTION (BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
+OPTION(BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 # Set the LIB_TYPE variable to STATIC
 SET(LIB_TYPE STATIC)
 IF(NOT WIN32)
