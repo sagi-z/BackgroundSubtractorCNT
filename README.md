@@ -18,7 +18,7 @@ Execution took 17.633301 seconds.
 
 ## Linux build and install
 
-[Follow a video session for building C++ and python on Pi here](https://www.youtube.com/watch?v=-FaVL1Otwds "BackgroundSubtractorCNT with python on Pi")
+[Follow a video session for building C++ and python on Pi](https://www.youtube.com/watch?v=-FaVL1Otwds "BackgroundSubtractorCNT with python on Pi")
 
 ### Build dependencies
 Make sure these are installed first and that their executables are **in your path**:
@@ -63,7 +63,7 @@ sudo dpkg -i ./bgsubcnt-1.1.0-Linux.deb
 
 ## Windows build and install
 
-[Follow a video session for building C++ and python here](https://www.youtube.com/watch?v=JaXWv340Bbw "BackgroundSubtractorCNT with python on windows")
+[Follow a video session for building C++ and python on windows](https://www.youtube.com/watch?v=JaXWv340Bbw "BackgroundSubtractorCNT with python on windows")
 
 ### Build dependencies
 Make sure these are installed first and that their executables are **in your path**:
