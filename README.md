@@ -16,7 +16,10 @@ pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x
 Execution took 17.633301 seconds.
 ```
 
-## Linux Building / Installing
+## Linux build and install
+
+[Follow a video session for building C++ and python on Pi here](https://www.youtube.com/watch?v=-FaVL1Otwds "BackgroundSubtractorCNT with python on Pi")
+
 ### Build dependencies
 Make sure these are installed first and that their executables are **in your path**:
 * **cmake** - should already be installed since you built OpenCV by yourself.
@@ -59,6 +62,9 @@ sudo dpkg -i ./bgsubcnt-1.1.0-Linux.deb
 ```
 
 ## Windows build and install
+
+[Follow a video session for building C++ and python here](https://www.youtube.com/watch?v=JaXWv340Bbw "BackgroundSubtractorCNT with python on windows")
+
 ### Build dependencies
 Make sure these are installed first and that their executables are **in your path**:
 * **cmake** - should already be installed if you built OpenCV by yourself (configure *OPENCV\_DIR* as required for build using OpenCV with cmake).
@@ -70,7 +76,6 @@ Make sure these are installed first and that their executables are **in your pat
 * **Python compiler for your python version** (optional) - needed for building the python extension (i.e. for python2.7 you need to install *Microsoft Visual C++ 2008 Express Edition*).
 
 ### Building
-(Follow a video session for building C++ and python here)
 
 * This should be done from a **"Developer Command Prompt for VS2015"** (Open it from the *Start* menu):
 ```
