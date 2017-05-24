@@ -6,7 +6,7 @@ import cv2
 import bgsubcnt
 import numpy as np
 
- # A temporary solution to OpenCV 3.1.0 bug
+# A temporary solution to OpenCV 3.1.0 bug
 cv2.ocl.setUseOpenCL(False)
 
 def usage():
@@ -63,7 +63,7 @@ def main(argv):
     if (filePath):
         cap = cv2.VideoCapture(filePath)
     else:
-        cap = cv2.VideoCapture()
+        cap = cv2.VideoCapture(0)
 
     if cap.isOpened() == False:
         print ("Could not initialize capturing...");
