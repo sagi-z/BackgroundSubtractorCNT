@@ -94,23 +94,33 @@ IF(PYTHON_EXTENSION)
 
                 ADD_CUSTOM_TARGET(bgsubcnt_python ALL DEPENDS ${OUTPUT})
 
-                EXECUTE_PROCESS (
-                        COMMAND ${PYTHON} -c
-                        "import site, sys; sys.stdout.write(site.PREFIXES[-1])"
-                        OUTPUT_VARIABLE PYTHON_PREFIX
-                        )
-                FILE(TO_CMAKE_PATH "${PYTHON_PREFIX}" PYTHON_PREFIX)
-                EXECUTE_PROCESS (
-                        COMMAND ${PYTHON} -c
-                        "import site, sys; sys.stdout.write(site.getsitepackages()[-1])"
-                        OUTPUT_VARIABLE PYTHON_SITE_DIR
-                        )
-                FILE(TO_CMAKE_PATH "${PYTHON_SITE_DIR}" PYTHON_SITE_DIR)
-                STRING ( REGEX REPLACE "^${PYTHON_PREFIX}/" ""
-                        PYTHON_SITE_DIR "${PYTHON_SITE_DIR}"
-                        )
-                MESSAGE("PYTHON_PREFIX is ${PYTHON_PREFIX}")
-                MESSAGE("PYTHON_SITE_DIR is ${PYTHON_SITE_DIR}")
+		IF("$ENV{VIRTUAL_ENV}" STREQUAL "")
+			EXECUTE_PROCESS (
+				COMMAND ${PYTHON} -c
+				"import site, sys; sys.stdout.write(site.PREFIXES[-1])"
+				OUTPUT_VARIABLE PYTHON_PREFIX
+				)
+			FILE(TO_CMAKE_PATH "${PYTHON_PREFIX}" PYTHON_PREFIX)
+			EXECUTE_PROCESS (
+				COMMAND ${PYTHON} -c
+				"import site, sys; sys.stdout.write(site.getsitepackages()[-1])"
+				OUTPUT_VARIABLE PYTHON_SITE_DIR
+				)
+			FILE(TO_CMAKE_PATH "${PYTHON_SITE_DIR}" PYTHON_SITE_DIR)
+			STRING ( REGEX REPLACE "^${PYTHON_PREFIX}/" ""
+				PYTHON_SITE_DIR "${PYTHON_SITE_DIR}"
+				)
+			MESSAGE("PYTHON_PREFIX is '${PYTHON_PREFIX}'")
+		ELSE()
+			MESSAGE("Detected working in virtualenv '$ENV{VIRTUAL_ENV}'")
+			EXECUTE_PROCESS (
+				COMMAND ${PYTHON} -c
+				"from __future__ import print_function; import sys; print(\"python%s.%s\" % sys.version_info[:2], end='')"
+				OUTPUT_VARIABLE PYTHON_VER
+				)
+			FILE(TO_CMAKE_PATH "$ENV{VIRTUAL_ENV}/lib/${PYTHON_VER}/site-packages/" PYTHON_SITE_DIR)
+		ENDIF()
+		MESSAGE("PYTHON_SITE_DIR is '${PYTHON_SITE_DIR}'")
 
                 INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib/python/
                         DESTINATION ${PYTHON_SITE_DIR}
