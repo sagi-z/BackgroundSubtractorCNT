@@ -176,6 +176,7 @@ class CNTFunctor
 {
 public:
     virtual void operator()(Vec4i &vec, uchar currColor, uchar prevColor, uchar &fgMaskPixelRef) = 0;
+    virtual ~CNTFunctor() {}
 };
 
 struct BGSubtractPixel : public CNTFunctor
