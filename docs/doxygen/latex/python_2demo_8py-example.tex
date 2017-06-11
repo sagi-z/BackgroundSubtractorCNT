@@ -68,7 +68,7 @@ This is an example of python usage.
 63     \textcolor{keywordflow}{if} (filePath):
 64         cap = cv2.VideoCapture(filePath)
 65     \textcolor{keywordflow}{else}:
-66         cap = cv2.VideoCapture()
+66         cap = cv2.VideoCapture(0)
 67 
 68     \textcolor{keywordflow}{if} cap.isOpened() == \textcolor{keyword}{False}:
 69         \textcolor{keywordflow}{print} (\textcolor{stringliteral}{"Could not initialize capturing..."});
