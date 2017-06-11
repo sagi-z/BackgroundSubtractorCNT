@@ -1,20 +1,8 @@
-The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
-===========================================================
-
-* BackgroundSubtractorCNT is a drop in replacement API for the background subtraction solutions supplied with OpenCV 3.1.0 and above.
-* It is much **faster** than any other background subtraction solutions in OpenCV (without NVidia CUDA) on low spec hardware.
-
-[For more details see my blog](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
-
-How much faster is it?
-----------------------
-Here is an output of benchmarking on Raspberry Pi3 both *MOG2* and *CNT* BackgroundSubtractors:
-```
-pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
-Execution took 40.964450 seconds.
-pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="CNT"
-Execution took 17.633301 seconds.
-```
+---
+layout: page
+title: Quick start
+permalink: /start/
+---
 
 ## Linux build and install
 
@@ -78,6 +66,7 @@ Make sure these are installed first and that their executables are **in your pat
 ### Building
 
 * This should be done from a **"Developer Command Prompt for VS2015"** (Open it from the *Start* menu):
+
 ```
 REM check dependencies are in path/exist
 REM ====================================
@@ -123,6 +112,7 @@ python -c "import cv2, bgsubcnt; fgbg = bgsubcnt.createBackgroundSubtractor(); p
 ```
 
 * Here is an example command line session in a **"Developer Command Prompt for VS2015"** with outputs:
+
 ```
 REM check dependencies are in path/exist
 REM ====================================

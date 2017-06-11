@@ -50,6 +50,10 @@
 // just a future wrapper marker
 #define BGSUBCNT_EXPORTS_W
 
+/**
+ * @file
+ */
+
 namespace cv
 {
 
@@ -116,6 +120,16 @@ createBackgroundSubtractorCNT(int minPixelStability = 15,
                               bool isParallel = true);
 
 }
+
+/**
+ * @example main.cpp
+ * This is an example of C++ usage.
+ */
+
+/**
+ * @example python/demo.py
+ * This is an example of python usage.
+ */
 
 }
 

@@ -1,0 +1,6 @@
+# Generated files
+doxygen_header.html
+Doxyfile
+
+build/
+CMakeLists.txt.user
