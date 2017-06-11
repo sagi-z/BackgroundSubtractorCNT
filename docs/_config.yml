@@ -20,7 +20,7 @@ description: > # this means to ignore newlines until "baseurl:"
   subtraction solutions supplied with OpenCV.
   It is much faster than any other background subtraction solutions in
   OpenCV-3.1.0 and above without NVidia CUDA, especially on low spec hardware.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/BackgroundSubtractorCNT" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sagi-z
 
@@ -29,9 +29,6 @@ markdown: kramdown
 theme: minima
 gems:
   - jekyll-feed
-include:
-  - assets
-  - doxygen
 exclude:
   - Gemfile
   - Gemfile.lock
