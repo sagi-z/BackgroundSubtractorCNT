@@ -24,7 +24,7 @@ baseurl: "/BackgroundSubtractorCNT" # the subpath of your site, e.g. /blog
 #url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sagi-z
 
-# seo
+google_seo: "true"
 # url is taken from site.github.url, which is fine
 google_site_verification: "JUx4WnitKgBv-bkQtPcA5t8KpbzedlCc0FHHLhac9J0"
 logo: /BackgroundSubtractorCNT/assets/img/project_logo.jpg
