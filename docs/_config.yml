@@ -27,7 +27,9 @@ github_username:  sagi-z
 environment: production
 google_seo: "true"
 # url is taken from site.github.url, which is fine
-google_site_verification: "JUx4WnitKgBv-bkQtPcA5t8KpbzedlCc0FHHLhac9J0"
+webmaster_verifications:
+  google: JUx4WnitKgBv-bkQtPcA5t8KpbzedlCc0FHHLhac9J0
+  bing: A8ABC38B72560EE52E9985C1E21C5BE4
 logo: /BackgroundSubtractorCNT/assets/img/project_logo.jpg
 
 # Build settings
