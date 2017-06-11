@@ -1,3 +1,5 @@
+**UPDATE**: see more on the [project site](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
+
 The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 ===========================================================
 
