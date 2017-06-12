@@ -9,6 +9,8 @@ A Counting BackgroundSubtractor (CNT stands for 'CouNT)
 
 * BackgroundSubtractorCNT is a drop in replacement API for the background subtraction solutions supplied with OpenCV 3.1.0 and above.
 * It is much **faster** than any other background subtraction solutions in OpenCV (without NVidia CUDA) on low spec hardware.
+* It has both a C++ API and a python API.
+* A drop in replacement means you simply change a single line of your code to get this amazing speed improvement.
 
 How much faster is it?
 =====================
