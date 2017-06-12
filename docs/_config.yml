@@ -25,6 +25,7 @@ baseurl: "/BackgroundSubtractorCNT" # the subpath of your site, e.g. /blog
 github_username:  sagi-z
 
 environment: production
+google_analytics: UA-100892600-1
 google_seo: "true"
 # url is taken from site.github.url, which is fine
 webmaster_verifications:
