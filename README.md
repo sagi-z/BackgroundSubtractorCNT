@@ -110,7 +110,7 @@ msbuild ALL_BUILD.vcxproj /p:Configuration=Release
 
 REM build the installer
 REM ===================
-msbuild PACKAGE.vcxproj
+msbuild PACKAGE.vcxproj /p:Configuration=Release
 
 REM run the installer
 REM =================
