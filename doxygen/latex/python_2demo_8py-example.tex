@@ -1,0 +1,108 @@
+\hypertarget{python_2demo_8py-example}{}\section{python/demo.\+py}
+This is an example of python usage.
+
+
+\begin{DoxyCodeInclude}
+1 \textcolor{comment}{#!/usr/bin/env python}
+2 
+3 \textcolor{keyword}{import} sys
+4 \textcolor{keyword}{import} getopt
+5 \textcolor{keyword}{import} cv2
+6 \textcolor{keyword}{import} bgsubcnt
+7 \textcolor{keyword}{import} numpy \textcolor{keyword}{as} np
+8 
+9  \textcolor{comment}{# A temporary solution to OpenCV 3.1.0 bug}
+10 cv2.ocl.setUseOpenCL(\textcolor{keyword}{False})
+11 
+12 \textcolor{keyword}{def }usage():
+13     \textcolor{keywordflow}{print} (\textcolor{stringliteral}{"""BackgroundSubtractorCNT demo/benchmark/comparison}
+14 \textcolor{stringliteral}{Usage: demo.py [params] }
+15 \textcolor{stringliteral}{}
+16 \textcolor{stringliteral}{    -h, --help}
+17 \textcolor{stringliteral}{        print this message}
+18 \textcolor{stringliteral}{        --bg    }
+19 \textcolor{stringliteral}{        calculate also the background}
+20 \textcolor{stringliteral}{    --file}
+21 \textcolor{stringliteral}{        use file (default is system camera)}
+22 \textcolor{stringliteral}{    --nogui }
+23 \textcolor{stringliteral}{        run without GUI to measure times}
+24 \textcolor{stringliteral}{    --type (default:CNT)}
+25 \textcolor{stringliteral}{        bg subtraction type from - CNT/MOG2/KNN}
+26 \textcolor{stringliteral}{"""})
+27 
+28 \textcolor{keyword}{def }getBGSubtractor(typeStr):
+29     \textcolor{keywordflow}{if} typeStr == \textcolor{stringliteral}{"KNN"}:
+30         \textcolor{keywordflow}{return} cv2.createBackgroundSubtractorKNN()
+31     \textcolor{keywordflow}{if} typeStr == \textcolor{stringliteral}{"MOG2"}:
+32         \textcolor{keywordflow}{return} cv2.createBackgroundSubtractorMOG2()
+33     \textcolor{keywordflow}{if} typeStr == \textcolor{stringliteral}{"CNT"}:
+34         \textcolor{keywordflow}{return} bgsubcnt.createBackgroundSubtractor()
+35     \textcolor{keywordflow}{print} (\textcolor{stringliteral}{"Unknown createBackgroundSubtractor type"})
+36     sys.exit(1)
+37 
+38 \textcolor{keyword}{def }main(argv):
+39     filePath = \textcolor{keywordtype}{None}
+40     hasGui = \textcolor{keyword}{True}
+41     bgImage = \textcolor{keyword}{False}
+42     typeStr = \textcolor{stringliteral}{"CNT"}
+43 
+44     \textcolor{keywordflow}{try}:
+45         opts, args = getopt.getopt(argv, \textcolor{stringliteral}{"h"}, [\textcolor{stringliteral}{"help"}, \textcolor{stringliteral}{"bg"}, \textcolor{stringliteral}{"file="}, \textcolor{stringliteral}{"nogui"}, \textcolor{stringliteral}{"type="}])
+46     \textcolor{keywordflow}{except} getopt.GetoptError:
+47         usage()
+48         sys.exit(1)
+49 
+50     \textcolor{keywordflow}{for} opt, arg \textcolor{keywordflow}{in} opts:
+51         \textcolor{keywordflow}{if} opt \textcolor{keywordflow}{in} (\textcolor{stringliteral}{"-h"}, \textcolor{stringliteral}{"--help"}):
+52             usage()
+53             sys.exit()
+54         \textcolor{keywordflow}{elif} opt == \textcolor{stringliteral}{"--file"}:
+55             filePath = arg
+56         \textcolor{keywordflow}{elif} opt == \textcolor{stringliteral}{"--bg"}:
+57             bgImage = \textcolor{keyword}{True}
+58         \textcolor{keywordflow}{elif} opt == \textcolor{stringliteral}{"--nogui"}:
+59             hasGui = \textcolor{keyword}{False}
+60         \textcolor{keywordflow}{elif} opt == \textcolor{stringliteral}{"--type"}:
+61             typeStr = arg
+62 
+63     \textcolor{keywordflow}{if} (filePath):
+64         cap = cv2.VideoCapture(filePath)
+65     \textcolor{keywordflow}{else}:
+66         cap = cv2.VideoCapture(0)
+67 
+68     \textcolor{keywordflow}{if} cap.isOpened() == \textcolor{keyword}{False}:
+69         \textcolor{keywordflow}{print} (\textcolor{stringliteral}{"Could not initialize capturing..."});
+70         sys.exit(2)
+71 
+72     fgbg = getBGSubtractor(typeStr)
+73 
+74     e1 = cv2.getTickCount()
+75 
+76     ret, frame = cap.read()
+77     while(ret):
+78         gray = cv2.cvtColor(frame, cv2.COLOR\_BGR2GRAY)
+79         fg = fgbg.apply(gray)
+80         \textcolor{keywordflow}{if} hasGui:
+81             cv2.imshow(\textcolor{stringliteral}{'Orig'},frame)
+82             cv2.imshow(\textcolor{stringliteral}{'FG'},fg)
+83             \textcolor{keywordflow}{if} bgImage:
+84                 bg = fgbg.getBackgroundImage()
+85                 cv2.imshow(\textcolor{stringliteral}{'BG'},bg)
+86             k = cv2.waitKey(1)
+87             \textcolor{keywordflow}{if} k == 27:
+88                 \textcolor{keywordflow}{break}
+89         ret, frame = cap.read()
+90 
+91     e2 = cv2.getTickCount()
+92 
+93     t = (e2 - e1)/cv2.getTickFrequency()
+94     \textcolor{keywordflow}{print} (\textcolor{stringliteral}{"Execution took '%(val).3f' seconds."} % \{\textcolor{stringliteral}{'val'}: t\});
+95 
+96     cap.release()
+97     \textcolor{keywordflow}{if} hasGui:
+98         cv2.destroyAllWindows()
+99 
+100 \textcolor{keywordflow}{if} \_\_name\_\_ == \textcolor{stringliteral}{"\_\_main\_\_"}:
+101     main(sys.argv[1:])
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,179 @@
+\hypertarget{main_8cpp-example}{}\section{main.\+cpp}
+This is an example of C++ usage.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include <opencv2/opencv.hpp>}
+\textcolor{preprocessor}{#include <iostream>}
+
+\textcolor{preprocessor}{#ifdef HAVE\_OPENCV\_CONTRIB}
+\textcolor{preprocessor}{#include <opencv2/bgsegm.hpp>}
+\textcolor{keyword}{using namespace }cv::bgsegm;
+\textcolor{preprocessor}{#endif}
+
+\textcolor{preprocessor}{#include "\hyperlink{bgsubcnt_8h}{bgsubcnt.h}"}
+
+\textcolor{keyword}{using namespace }\hyperlink{namespacecv}{cv};
+\textcolor{keyword}{using namespace }\hyperlink{namespacecv_1_1bgsubcnt}{cv::bgsubcnt};
+\textcolor{keyword}{using namespace }std;
+
+\textcolor{keyword}{const} \textcolor{keywordtype}{string} keys =
+        \textcolor{stringliteral}{"\{help h usage ? || print this message\}"}
+        \textcolor{stringliteral}{"\{file           || use file (default is system camera)\}"}
+        \textcolor{stringliteral}{"\{type           |CNT| bg subtraction type from - CNT/MOG2/KNN"}
+\textcolor{preprocessor}{#ifdef HAVE\_OPENCV\_CONTRIB}
+        \textcolor{stringliteral}{"/GMG/MOG"}
+\textcolor{preprocessor}{#endif}
+        \textcolor{stringliteral}{"\}"}
+        \textcolor{stringliteral}{"\{bg             || calculate also the background\}"}
+        \textcolor{stringliteral}{"\{nogui          || run without GUI to measure times\}"};
+
+
+\textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv )
+\{
+    VideoCapture cap;
+
+    CommandLineParser parser(argc, argv, keys);
+    parser.about(\textcolor{stringliteral}{"BackgroundSubtractorCNT demo/benchmark/comparison"});
+    \textcolor{keywordflow}{if} (parser.has(\textcolor{stringliteral}{"help"}))
+    \{
+        parser.printMessage();
+        \textcolor{keywordflow}{return} 0;
+    \}
+    \textcolor{keywordtype}{bool} hasFile = parser.has(\textcolor{stringliteral}{"file"});
+    \textcolor{keywordtype}{bool} hasGui = ! parser.has(\textcolor{stringliteral}{"nogui"});
+    \textcolor{keywordtype}{bool} bgImage = parser.has(\textcolor{stringliteral}{"bg"});
+    \textcolor{keywordtype}{string} type = parser.get<\textcolor{keywordtype}{string}>(\textcolor{stringliteral}{"type"});
+
+    \textcolor{keywordtype}{string} filePath;
+    \textcolor{keywordflow}{if} (hasFile)
+    \{
+        filePath = parser.get<\textcolor{keywordtype}{string}>(\textcolor{stringliteral}{"file"});
+        \textcolor{keywordflow}{if} (filePath == \textcolor{stringliteral}{"true"})
+        \{
+            cout << \textcolor{stringliteral}{"You must supply a file path argument with -file=filePath\(\backslash\)n"};
+            \textcolor{keywordflow}{return} 1;
+        \}
+        cap.open(filePath);
+    \}
+    \textcolor{keywordflow}{else}
+    \{
+        cap.open(0);
+    \}
+    \textcolor{keywordflow}{if} (! parser.check())
+    \{
+        parser.printErrors();
+        \textcolor{keywordflow}{return} 1;
+    \}
+
+    \textcolor{keywordflow}{if}( !cap.isOpened() )
+    \{
+        cout << \textcolor{stringliteral}{"Could not initialize capturing...\(\backslash\)n"};
+        \textcolor{keywordflow}{return} 0;
+    \}
+
+    Ptr<BackgroundSubtractor> pBgSub;
+    \textcolor{keywordflow}{if} (type == \textcolor{stringliteral}{"CNT"})
+    \{
+        \textcolor{keywordtype}{int} fps = 15;
+        \textcolor{keywordflow}{if} (hasFile)
+        \{
+            fps = int(cap.get(CAP\_PROP\_FPS));
+        \}
+        pBgSub = \hyperlink{bgsubcnt_8h_a6a6efd913954320be33f39c32a4c5a7e}{createBackgroundSubtractorCNT}(fps, \textcolor{keyword}{true}, fps*60);
+    \}
+    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (type == \textcolor{stringliteral}{"MOG2"})
+    \{
+        Ptr<BackgroundSubtractorMOG2> pBgSubMOG2 = createBackgroundSubtractorMOG2();
+        pBgSubMOG2->setDetectShadows(\textcolor{keyword}{false});
+        pBgSub = pBgSubMOG2;
+    \}
+    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (type == \textcolor{stringliteral}{"KNN"})
+    \{
+        pBgSub = createBackgroundSubtractorKNN();
+    \}
+\textcolor{preprocessor}{#ifdef HAVE\_OPENCV\_CONTRIB}
+    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (type == \textcolor{stringliteral}{"GMG"})
+    \{
+        pBgSub = createBackgroundSubtractorGMG();
+    \}
+    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (type == \textcolor{stringliteral}{"MOG"})
+    \{
+        pBgSub = createBackgroundSubtractorMOG();
+    \}
+\textcolor{preprocessor}{#endif}
+    \textcolor{keywordflow}{else}
+    \{
+        parser.printMessage();
+        cout << \textcolor{stringliteral}{"\(\backslash\)nWrong type - please see above\(\backslash\)n"};
+        \textcolor{keywordflow}{return} 1;
+    \}
+
+    \textcolor{keywordtype}{bool} showFG=\textcolor{keyword}{true};
+    \textcolor{keywordflow}{if} (hasGui)
+    \{
+        namedWindow(\textcolor{stringliteral}{"Orig"}, 1);
+        namedWindow(\textcolor{stringliteral}{"FG"}, 1);
+        \textcolor{keywordflow}{if} (bgImage)
+        \{
+            namedWindow(\textcolor{stringliteral}{"BG"}, 1);
+        \}
+        cout << \textcolor{stringliteral}{"Press 's' to save a frame to the current directory.\(\backslash\)n"}
+                \textcolor{stringliteral}{"Use ESC to quit.\(\backslash\)n"} << endl;
+    \}
+    int64 startTime = getTickCount();
+    \textcolor{keywordflow}{for}(;;)
+    \{
+        Mat frame, fgMask, fg, bg;
+        cap >> frame;
+        \textcolor{keywordflow}{if}( frame.empty() )
+        \{
+            \textcolor{keywordflow}{break};
+        \}
+        Mat gray;
+        cvtColor(frame, gray, COLOR\_BGR2GRAY);
+
+        pBgSub->apply(gray, fgMask);
+        \textcolor{keywordflow}{if} (hasGui)
+        \{
+            imshow(\textcolor{stringliteral}{"Orig"}, frame);
+            \textcolor{keywordflow}{if} (showFG)
+            \{
+                frame.copyTo(fg, fgMask);
+                imshow(\textcolor{stringliteral}{"FG"}, fg);
+            \}
+        \}
+
+        \textcolor{keywordflow}{if} (bgImage)
+        \{
+            pBgSub->getBackgroundImage(bg);
+            \textcolor{keywordflow}{if} (hasGui)
+            \{
+                imshow(\textcolor{stringliteral}{"BG"}, bg);
+            \}
+        \}
+
+        \textcolor{keywordflow}{if} (hasGui)
+        \{
+            \textcolor{keywordtype}{char} c = (char)waitKey(1);
+            \textcolor{keywordflow}{if} (c == 27)
+            \{
+                \textcolor{keywordflow}{break};
+            \}
+            \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (c == \textcolor{charliteral}{'s'})
+            \{
+                imwrite(\textcolor{stringliteral}{"frame.jpg"}, frame);
+                imwrite(\textcolor{stringliteral}{"fg.jpg"}, fg);
+                \textcolor{keywordflow}{if} (bgImage)
+                \{
+                    imwrite(\textcolor{stringliteral}{"bg.jpg"}, bg);
+                \}
+            \}
+        \}
+    \}
+    \textcolor{keywordtype}{double} tfreq = getTickFrequency();
+    \textcolor{keywordtype}{double} secs = ((double) getTickCount() - startTime)/tfreq;
+    cout << \textcolor{stringliteral}{"Execution took "} << fixed << secs << \textcolor{stringliteral}{" seconds."} << endl;
+\}
+\end{DoxyCodeInclude}
+ 
