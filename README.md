@@ -114,7 +114,7 @@ msbuild PACKAGE.vcxproj
 
 REM run the installer
 REM =================
-.\bgsubcnt-1.1.0-win64.exe
+.\bgsubcnt-1.1.0-win64.exe /p:Configuration=Release
 
 REM check if we can load the module
 REM ===============================
