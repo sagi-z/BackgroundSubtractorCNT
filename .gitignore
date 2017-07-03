@@ -1,6 +1,7 @@
 # Generated files
 doxygen_header.html
 Doxyfile
-
-build/
+build
+doc
+*.swp
 CMakeLists.txt.user

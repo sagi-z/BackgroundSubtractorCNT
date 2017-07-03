@@ -76,7 +76,6 @@ SET(BGSUBCNT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 ADD_SUBDIRECTORY(python) 
 
-option(BUILD_DOCUMENTATION "Use Doxygen to create the HTML documentation for gh-pages" OFF)
 if(BUILD_DOCUMENTATION)
   FIND_PACKAGE(Doxygen)
   if (NOT DOXYGEN_FOUND)
@@ -84,24 +83,52 @@ if(BUILD_DOCUMENTATION)
       "Doxygen is needed to build the documentation. Please install it correctly")
   endif()
 
-  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
-
   FILE(WRITE ${CMAKE_BINARY_DIR}/concat.cmake "
       FILE(READ \${SRC1} S1)
       FILE(READ \${SRC2} S2)
       FILE(WRITE \${DST} \${S1}\${S2})
       ")
 
-  add_custom_target (doc ALL
-      COMMAND ${DOXYGEN_EXECUTABLE} -w html ${CMAKE_BINARY_DIR}/doxygen_header_orig.html.in ${CMAKE_BINARY_DIR}/ignore_footer.html ${CMAKE_BINARY_DIR}/ignore_css.css
-      COMMAND ${CMAKE_COMMAND} -D SRC1=${CMAKE_CURRENT_SOURCE_DIR}/doxygen_header.html.in
-                                   -D SRC2=${CMAKE_BINARY_DIR}/doxygen_header_orig.html.in
-                                   -D DST=${CMAKE_SOURCE_DIR}/doxygen_header.html
-                                   -P ${CMAKE_BINARY_DIR}/concat.cmake
-      COMMAND ${CMAKE_COMMAND} -E remove_directory docs/doxygen
-      COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-      )
+  # Allow css changes
+  SET(CMAKE_DOXYGEN_EXTRA_CSS "")
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/doxygen_style.css")
+      SET(CMAKE_DOXYGEN_EXTRA_CSS "${CMAKE_CURRENT_SOURCE_DIR}/doxygen_style.css")
+  endif()
+
+  # Allow header changes
+  set(CMAKE_DOXYGEN_HTML_HEADER "")
+  if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/doxygen_header.html.in")
+      set(CMAKE_DOXYGEN_HTML_HEADER "${CMAKE_SOURCE_DIR}/doxygen_header.html")
+  endif()
+
+  # These variables are used in Doxyfile.in (must be defined at this point):
+  # CMAKE_DOXYGEN_EXTRA_CSS
+  # CMAKE_DOXYGEN_HTML_HEADER
+  # CMAKE_GIT_REPO
+  # CPACK_PACKAGE_VERSION
+  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/doxygen_in/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile @ONLY)
+
+  # Allow html header changes
+  if(CMAKE_DOXYGEN_HTML_HEADER STREQUAL "")
+      add_custom_target (doc
+          COMMAND ${CMAKE_COMMAND} -E remove_directory doc
+          COMMAND ${CMAKE_COMMAND} -E make_directory doc
+          COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+          )
+  else()
+      add_custom_target (doc
+          COMMAND ${DOXYGEN_EXECUTABLE} -w html ${CMAKE_BINARY_DIR}/doxygen_header_orig.html.in ${CMAKE_BINARY_DIR}/ignore_footer.html ${CMAKE_BINARY_DIR}/ignore_css.css
+          COMMAND ${CMAKE_COMMAND} -D SRC1=${CMAKE_CURRENT_SOURCE_DIR}/doxygen_header.html.in
+                                       -D SRC2=${CMAKE_BINARY_DIR}/doxygen_header_orig.html.in
+                                       -D DST=${CMAKE_SOURCE_DIR}/doxygen_header.html
+                                       -P ${CMAKE_BINARY_DIR}/concat.cmake
+          COMMAND ${CMAKE_COMMAND} -E remove_directory doc
+          COMMAND ${CMAKE_COMMAND} -E make_directory doc
+          COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+          )
+  endif()
 endif()
 
 # This must always be last!
