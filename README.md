@@ -60,7 +60,7 @@ sudo make install
 ### C++/Python Install option 2 for Linux - cleaner (from the build directory):
 ```
 cpack -G DEB
-sudo dpkg -i ./bgsubcnt-1.1.0-Linux.deb
+sudo dpkg -i ./bgsubcnt-1.1.2-Linux.deb
 ```
 
 ## Windows build and install
@@ -114,11 +114,11 @@ msbuild PACKAGE.vcxproj
 
 REM run the installer
 REM =================
-.\bgsubcnt-1.1.0-win64.exe
+.\bgsubcnt-1.1.2-win64.exe
 
 REM check if we can load the module
 REM ===============================
-set PYTHONPATH=C:\Program Files\bgsubcnt 1.1.0\lib\site-packages
+set PYTHONPATH=C:\Program Files\bgsubcnt 1.1.2\lib\site-packages
 cd ..
 python -c "import cv2, bgsubcnt; fgbg = bgsubcnt.createBackgroundSubtractor(); print fgbg"
 
@@ -208,7 +208,7 @@ Time Elapsed 00:00:08.51
 
 REM build the installer
 REM ===================
-c:\Users\sagiz\BackgroundSubtractorCNT\build>msbuild PACKAGE.vcxproj
+c:\Users\sagiz\BackgroundSubtractorCNT\build>msbuild PACKAGE.vcxproj /p:Configuration=Release
 … (didn’t copy-paste all the output lines). ..
 Build succeeded.
     0 Warning(s)
@@ -218,11 +218,11 @@ Time Elapsed 00:00:13.33
 
 REM run the installer
 REM =================
-c:\Users\sagiz\BackgroundSubtractorCNT\build>.\bgsubcnt-1.1.0-win64.exe
+c:\Users\sagiz\BackgroundSubtractorCNT\build>.\bgsubcnt-1.1.2-win64.exe
 
 REM check if we can load the module
 REM ===============================
-c:\Users\sagiz\BackgroundSubtractorCNT\build>set PYTHONPATH=C:\Program Files\bgsubcnt 1.1.0\lib\site-packages
+c:\Users\sagiz\BackgroundSubtractorCNT\build>set PYTHONPATH=C:\Program Files\bgsubcnt 1.1.2\lib\site-packages
 
 c:\Users\sagiz\BackgroundSubtractorCNT\build>cd ..
 
@@ -232,7 +232,7 @@ c:\Users\sagiz\BackgroundSubtractorCNT>python -c "import cv2, bgsubcnt; fgbg = b
 ```
 
 ### Install
-Update/add the environment variable PYTHONPATH to point to where the python extension was installed (in the example above it was added to C:\Program Files\bgsubcnt 1.1.0\lib\site-packages).
+Update/add the environment variable PYTHONPATH to point to where the python extension was installed (in the example above it was added to C:\Program Files\bgsubcnt 1.1.2\lib\site-packages).
 In the *File Explorer*, right-click on *This PC* and coose *properties*. Then choose *Advanced system settings* and press the "Environment Variables ..." button.
 
 C++ Usage
