@@ -54,9 +54,11 @@
  * @file
  */
 
+/// This OpenCV namespace just adds the bgsubcnt namespace
 namespace cv
 {
 
+/// The BackgroundSubtractorCNT related code is in here
 namespace bgsubcnt
 {
 
@@ -120,6 +122,8 @@ createBackgroundSubtractorCNT(int minPixelStability = 15,
                               bool isParallel = true);
 
 }
+
+// doxygen marksups below
 
 /**
  * @example main.cpp
