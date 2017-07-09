@@ -20,15 +20,15 @@ This module is very predictable as it\textquotesingle{}s behavior follows common
 
 \paragraph*{How long to wait before considering a pixel to be a background?}
 
-When you and I look at a scene, we wait for some time before we consider an item to be part of a background. The assumption here is that it takes about 1 second, but you can play with it. I recommend using your expected F\+PS as the value of min\+Pixel\+Stability when using \hyperlink{bgsubcnt_8h_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. The value represents the number of frames to wait when a pixel is not changing before marking it as background. The demo is doing exactly that in main.\+cpp.
+When you and I look at a scene, we wait for some time before we consider an item to be part of a background. The assumption here is that it takes about 1 second, but you can play with it. I recommend using your expected F\+PS as the value of min\+Pixel\+Stability when using \hyperlink{namespacecv_1_1bgsubcnt_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. The value represents the number of frames to wait when a pixel is not changing before marking it as background. The demo is doing exactly that in main.\+cpp.
 
 \paragraph*{How long to wait before recognizing the background changed?}
 
-Okay – so we’ve set something to be a background, and things are passing in front of it. When something is in front of it for a long time, then it’s time to treat it as a background instead of the previous one, but how long to wait before doing this replacement? The algorithm here was tested with a 60 seconds value and gave good results. You can change that as you want, but I recommend setting max\+Pixel\+Stability to “min\+Pixel\+Stability$\ast$60″ in \hyperlink{bgsubcnt_8h_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. The demo is doing exactly that in main.\+cpp.
+Okay – so we’ve set something to be a background, and things are passing in front of it. When something is in front of it for a long time, then it’s time to treat it as a background instead of the previous one, but how long to wait before doing this replacement? The algorithm here was tested with a 60 seconds value and gave good results. You can change that as you want, but I recommend setting max\+Pixel\+Stability to “min\+Pixel\+Stability$\ast$60″ in \hyperlink{namespacecv_1_1bgsubcnt_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. The demo is doing exactly that in main.\+cpp.
 
 \paragraph*{But what if you want to R\+E\+A\+CT V\+E\+RY F\+A\+ST TO S\+C\+E\+NE C\+H\+A\+N\+G\+ES?}
 
-If reducing max\+Pixel\+Stability is not enough, you can use ‘false‘ for use\+History in \hyperlink{bgsubcnt_8h_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. In this case max\+Pixel\+Stability is ignored. Because the background distinction is weaker, you’ll see small ghosts following your foreground objects and the background image will have some ghosts images fading in it. Using “min\+Pixel\+Stability=F\+P\+S/5” will reduce this phenomena.
+If reducing max\+Pixel\+Stability is not enough, you can use ‘false‘ for use\+History in \hyperlink{namespacecv_1_1bgsubcnt_a6a6efd913954320be33f39c32a4c5a7e}{create\+Background\+Subtractor\+C\+N\+T()}. In this case max\+Pixel\+Stability is ignored. Because the background distinction is weaker, you’ll see small ghosts following your foreground objects and the background image will have some ghosts images fading in it. Using “min\+Pixel\+Stability=F\+P\+S/5” will reduce this phenomena.
 
 \paragraph*{To parallel or not to parallel?}
 

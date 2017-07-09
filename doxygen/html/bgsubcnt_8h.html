@@ -44,6 +44,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="examples.html"><span>Examples</span></a></li>
@@ -92,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">bgsubcnt.h File Reference</div>  </div>
@@ -107,67 +109,25 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Background subtraction based on counting. About as fast as MOG2 on a high end system. More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3). Algorithm by Sagi Zeevi.  <a href="classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacecv"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecv.html">cv</a></td></tr>
+<tr class="memdesc:namespacecv"><td class="mdescLeft">&#160;</td><td class="mdescRight">This OpenCV namespace just adds the bgsubcnt namespace. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacecv_1_1bgsubcnt"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecv_1_1bgsubcnt.html">cv::bgsubcnt</a></td></tr>
+<tr class="memdesc:namespacecv_1_1bgsubcnt"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT.html" title="Background subtraction based on counting. About as fast as MOG2 on a high end system. More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3). Algorithm by Sagi Zeevi. ">BackgroundSubtractorCNT</a> related code is in here. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6a6efd913954320be33f39c32a4c5a7e"><td class="memItemLeft" align="right" valign="top">BGSUBCNT_EXPORTS_W Ptr&lt; BackgroundSubtractorCNT &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bgsubcnt_8h.html#a6a6efd913954320be33f39c32a4c5a7e">cv::bgsubcnt::createBackgroundSubtractorCNT</a> (int minPixelStability=15, bool useHistory=true, int maxPixelStability=15 *60, bool isParallel=true)</td></tr>
-<tr class="memdesc:a6a6efd913954320be33f39c32a4c5a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create background subtraction based on counting.  <a href="bgsubcnt_8h.html#a6a6efd913954320be33f39c32a4c5a7e">More...</a><br /></td></tr>
+<tr class="memitem:a6a6efd913954320be33f39c32a4c5a7e"><td class="memItemLeft" align="right" valign="top">BGSUBCNT_EXPORTS_W Ptr&lt; BackgroundSubtractorCNT &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecv_1_1bgsubcnt.html#a6a6efd913954320be33f39c32a4c5a7e">cv::bgsubcnt::createBackgroundSubtractorCNT</a> (int minPixelStability=15, bool useHistory=true, int maxPixelStability=15 *60, bool isParallel=true)</td></tr>
+<tr class="memdesc:a6a6efd913954320be33f39c32a4c5a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create background subtraction based on counting.  <a href="namespacecv_1_1bgsubcnt.html#a6a6efd913954320be33f39c32a4c5a7e">More...</a><br /></td></tr>
 <tr class="separator:a6a6efd913954320be33f39c32a4c5a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="file_a6a6efd913954320be33f39c32a4c5a7e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BGSUBCNT_EXPORTS_W Ptr&lt;BackgroundSubtractorCNT&gt; cv::bgsubcnt::createBackgroundSubtractorCNT </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>minPixelStability</em> = <code>15</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>useHistory</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>maxPixelStability</em> = <code>15&#160;*60</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isParallel</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">minPixelStability</td><td>number of frames with same pixel color to consider stable </td></tr>
-    <tr><td class="paramname">useHistory</td><td>determines if we're giving a pixel credit for being stable for a long time </td></tr>
-    <tr><td class="paramname">maxPixelStability</td><td>maximum allowed credit for a pixel in history </td></tr>
-    <tr><td class="paramname">isParallel</td><td>determines if we're parallelizing the algorithm </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a smart pointer to a <a class="el" href="classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT.html" title="Background subtraction based on counting. About as fast as MOG2 on a high end system. More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3). Algorithm by Sagi Zeevi. ">BackgroundSubtractorCNT</a> </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The default values assume 15 FPS, in which a pixel which keeps it's value for ~ 1 second is a stable background. For history, a stable pixel will keep counting frames up to maxPixelStability. Changes will try to decrement the count, but as long as it is above minPixelStability, is will remain stable. If FPS is 15, then maxPixelStability of 15*60 means that a changes of ~ 60 seconds will make this pixel non-stable background. Effect of learningRate in apply(..., learningRate) - If learningRate == -1, then the algorithm is as stated above. If learningRate == 0, it is as if you used 'useHistory = false'. If 0 &lt; learningRate &lt; 1, then maxPixelStability = "initial maxPixelStability" * learningRate </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="main_8cpp-example.html#a0">main.cpp</a>.</dd>
-</dl>
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 3 2017 11:27:31 for BackgroundSubtractorCNT by &#160;<a href="http://www.doxygen.org/index.html">
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
