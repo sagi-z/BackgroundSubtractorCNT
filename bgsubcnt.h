@@ -63,8 +63,11 @@ namespace bgsubcnt
 {
 
 /** @brief Background subtraction based on counting.
+ *
  *  About as fast as MOG2 on a high end system.
+ * 
  *  More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3).
+ * 
  *  Algorithm by Sagi Zeevi
  *  @see createBackgroundSubtractorCNT()
  */
@@ -98,6 +101,7 @@ public:
 
 /**
  * @brief Create background subtraction based on counting.
+ *
  * @param minPixelStability number of frames with same pixel color to consider stable
  * @param useHistory determines if we're giving a pixel credit for being stable for a long time
  * @param maxPixelStability maximum allowed credit for a pixel in history
@@ -106,14 +110,16 @@ public:
  * @note
  * The default values assume 15 FPS, in which a pixel which keeps it's value for ~ 1 second is
  * a stable background.
+ * 
  * For history, a stable pixel will keep counting frames up to maxPixelStability. Changes will try
- * to decrement the count, but as long as it is above minPixelStability, is will remain stable. If FPS
- * is 15, then maxPixelStability of 15*60 means that a changes of ~ 60 seconds will make this pixel
+ * to decrement the count, but as long as it is above minPixelStability, is will remain stable. for
+ * example, if FPS * is 15, then maxPixelStability of 15*60 means that a changes of ~ 60 seconds will make this pixel
  * non-stable background.
+ * 
  * Effect of learningRate in apply(..., learningRate) -
- * If learningRate == -1, then the algorithm is as stated above.
- * If learningRate == 0, it is as if you used 'useHistory = false'.
- * If 0 < learningRate < 1, then maxPixelStability = "initial maxPixelStability" * learningRate
+ * - If learningRate == -1, then the algorithm is as stated above.
+ * - If learningRate == 0, it is as if you used 'useHistory = false'.
+ * - If 0 < learningRate < 1, then maxPixelStability = "initial maxPixelStability" * learningRate
  */
 BGSUBCNT_EXPORTS_W Ptr<BackgroundSubtractorCNT>
 createBackgroundSubtractorCNT(int minPixelStability = 15,

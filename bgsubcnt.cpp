@@ -52,8 +52,11 @@ namespace bgsubcnt
 {
 
 /* @brief Implementation of background subtraction based on counting.
- *  About as fast as MOG2 on a high end system (benchmarked on )
+ *
+ *  About as fast as MOG2 on a high end system (benchmarked on Ubuntu16.04 16GB RAM, 16 X i7-5820K CPU @ 3.30GHz)
+ * 
  *  More than twice faster than MOG2 on cheap hardware (benchmarked on Raspberry Pi3).
+ * 
  *  Algorithm by Sagi Zeevi
  */
 class BackgroundSubtractorCNTImpl: public BackgroundSubtractorCNT
@@ -61,6 +64,7 @@ class BackgroundSubtractorCNTImpl: public BackgroundSubtractorCNT
 public:
     /*
      * @brief BackgroundSubtractorCNTImpl
+     *
      * @param stability number of frames with same pixel color to consider stable
      * @param useHistory determines if we're giving a pixel credit for being stable for a long time
      * @param maxStability maximum allowed credit for a pixel in history
@@ -93,7 +97,7 @@ private:
     int threshold;
     bool useHistory;
     bool isParallel;
-    // These 3 commented expressed in 1 'data' for faster single access
+    // These 4 commented expressed in 1 'data' for faster single access
     //    Mat_<int> stability;        // data[0]  => Candidate for historyStability if pixel is ~same as in prevFrame
     //    Mat_<int> history;          // data[1]  => Color which got most hits for the past maxPixelStability frames
     //    Mat_<int> historyStability; // data[2]  => How many hits this pixel got for the color in history
