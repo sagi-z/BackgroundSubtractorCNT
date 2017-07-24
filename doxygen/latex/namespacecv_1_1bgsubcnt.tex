@@ -9,7 +9,7 @@ The \hyperlink{classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT}{Background\+Subtr
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT}{Background\+Subtractor\+C\+NT}
-\begin{DoxyCompactList}\small\item\em Background subtraction based on counting. About as fast as M\+O\+G2 on a high end system. More than twice faster than M\+O\+G2 on cheap hardware (benchmarked on Raspberry Pi3). Algorithm by Sagi Zeevi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Background subtraction based on counting. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,8 +43,15 @@ B\+G\+S\+U\+B\+C\+N\+T\+\_\+\+E\+X\+P\+O\+R\+T\+S\+\_\+W Ptr$<$ \hyperlink{class
 a smart pointer to a \hyperlink{classcv_1_1bgsubcnt_1_1BackgroundSubtractorCNT}{Background\+Subtractor\+C\+NT} 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-The default values assume 15 F\+PS, in which a pixel which keeps it\textquotesingle{}s value for $\sim$ 1 second is a stable background. For history, a stable pixel will keep counting frames up to max\+Pixel\+Stability. Changes will try to decrement the count, but as long as it is above min\+Pixel\+Stability, is will remain stable. If F\+PS is 15, then max\+Pixel\+Stability of 15$\ast$60 means that a changes of $\sim$ 60 seconds will make this pixel non-\/stable background. Effect of learning\+Rate in apply(..., learning\+Rate) -\/ If learning\+Rate == -\/1, then the algorithm is as stated above. If learning\+Rate == 0, it is as if you used \textquotesingle{}use\+History = false\textquotesingle{}. If 0 $<$ learning\+Rate $<$ 1, then max\+Pixel\+Stability = \char`\"{}initial max\+Pixel\+Stability\char`\"{} $\ast$ learning\+Rate 
+The default values assume 15 F\+PS, in which a pixel which keeps it\textquotesingle{}s value for $\sim$ 1 second is a stable background.
 \end{DoxyNote}
-\begin{Desc}
+For history, a stable pixel will keep counting frames up to max\+Pixel\+Stability. Changes will try to decrement the count, but as long as it is above min\+Pixel\+Stability, is will remain stable. for example, if F\+PS $\ast$ is 15, then max\+Pixel\+Stability of 15$\ast$60 means that a changes of $\sim$ 60 seconds will make this pixel non-\/stable background.
+
+Effect of learning\+Rate in apply(..., learning\+Rate) -\/
+\begin{DoxyItemize}
+\item If learning\+Rate == -\/1, then the algorithm is as stated above.
+\item If learning\+Rate == 0, it is as if you used \textquotesingle{}use\+History = false\textquotesingle{}.
+\item If 0 $<$ learning\+Rate $<$ 1, then max\+Pixel\+Stability = \char`\"{}initial max\+Pixel\+Stability\char`\"{} $\ast$ learning\+Rate 
+\end{DoxyItemize}\begin{Desc}
 \item[Examples\+: ]\par
 \hyperlink{main_8cpp-example}{main.\+cpp}.\end{Desc}

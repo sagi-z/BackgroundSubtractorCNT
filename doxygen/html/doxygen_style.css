@@ -1,0 +1,19 @@
+a.page-link
+{
+    font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div.trigger {
+    line-height: 54px;
+}
+
+div.fragment
+{
+    white-space: pre;
+    overflow: auto;
+}
+
+.icon {
+    background-color: transparent;
+}
+

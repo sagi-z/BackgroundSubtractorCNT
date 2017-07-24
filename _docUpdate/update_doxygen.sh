@@ -34,11 +34,12 @@ if [ "$GIT_REPO_URL" == "" ]; then
     fatal "Must get a git repository URL (local or remote)"
 fi
 
-TMP_MASTER=$HOME/tmp/BackgroundSubtractorCNT-doxygen
+TMP_MASTER_DIRNAME=BackgroundSubtractorCNT
+TMP_MASTER=$HOME/tmp/$TMP_MASTER_DIRNAME
 rm -rf $TMP_MASTER
 mkdir -p $TMP_MASTER
 cd $HOME/tmp
-if ! `git clone $GIT_REPO_URL BackgroundSubtractorCNT-doxygen`; then
+if ! `git clone $GIT_REPO_URL $TMP_MASTER_DIRNAME`; then
     fatal "Failed to clone '$GIT_REPO_URL'"
 fi
 cd $TMP_MASTER
@@ -46,7 +47,7 @@ git checkout master
 
 # Copy all the needed files
 cd $abs_path
-cp doxygen_header.html.in $TMP_MASTER
+cp doxygen_style.css doxygen_header.html.in $TMP_MASTER
 
 # Generate doxygen
 cd $TMP_MASTER
@@ -56,6 +57,9 @@ cmake -DBUILD_DOCUMENTATION=ON ..
 make doc
 cd ..
 rm -rf $TARGET_DIR
+
+# HACK: modify images with maps to be in a scrollable div
+find doc/html -type f -name "*html" |xargs grep -l 'img.*usemap'| xargs perl -i -pe 's/<img (.* usemap.*>)/<div style="overflow: auto;"><img style="max-width: 4096px;" $1<\/div>/'
 
 # Take doxygen output
 mv doc $TARGET_DIR
