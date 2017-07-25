@@ -4,7 +4,8 @@ title: Donate
 permalink: /donate/
 ---
 
-If you find this project useful then consider donating:
+This project was privatly developed externally to the OpenCV project. If
+you find this project useful then please consider donating:
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="6N7Y93VTBFQCL">

@@ -23,5 +23,8 @@ Execution took 17.633301 seconds.
 ```
 [For more details see this blog post](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
 
-
+Roadmap
+=======
+* Make it faster.
+* Shadow detection.
 

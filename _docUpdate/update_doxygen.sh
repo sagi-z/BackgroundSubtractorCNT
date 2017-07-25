@@ -4,10 +4,10 @@
 GIT_REPO_URL=$1
 
 pushd `dirname $0` > /dev/null
-abs_path=$PWD
+ABS_PATH=$PWD
 popd > /dev/null
 
-TARGET_DIR=$abs_path/../doxygen
+TARGET_DIR=$ABS_PATH/../doxygen
 
 CLR_RED="\033[31m"
 CLR_RST="\033[m"
@@ -46,7 +46,7 @@ cd $TMP_MASTER
 git checkout master
 
 # Copy all the needed files
-cd $abs_path
+cd $ABS_PATH
 cp doxygen_style.css doxygen_header.html.in $TMP_MASTER
 
 # Generate doxygen
@@ -58,11 +58,29 @@ make doc
 cd ..
 rm -rf $TARGET_DIR
 
-# HACK: modify images with maps to be in a scrollable div
+# HACK1: modify images with maps to be in a scrollable div
 find doc/html -type f -name "*html" |xargs grep -l 'img.*usemap'| xargs perl -i -pe 's/<img (.* usemap.*>)/<div style="overflow: auto;"><img style="max-width: 4096px;" $1<\/div>/'
+notice "\nCheck doxygen inheritance graphs correctness"
+
+# HACK2: move the search box (see also main.scss for the added containers used in recreate_search_box.pl)
+searchBoxFiles=`find doc/html -type f -name "*html" |xargs grep -l 'div.*id="MSearchBox"'`
+for file in $searchBoxFiles; do
+
+    # 1. Create the search box in a frame & Remove all search related divs
+    perl -i -ne 's/new SearchBox\("searchBox", "search",false/new SearchBox("searchBox", "search",true/; if (/div.*id="MSearch/ ... /div/) {} else {print}' $file
+
+    # 2. Put the search boxes in a container
+    tmp_file=${file}.tmp.input
+    mv $file $tmp_file
+    $ABS_PATH/recreate_search_box.pl $tmp_file $file
+    rm $tmp_file
+
+done;
+notice "\nCheck doxygen search-box correctness"
 
 # Take doxygen output
 mv doc $TARGET_DIR
 
 # Cleanup temp dir
 rm -rf $TMP_MASTER
+

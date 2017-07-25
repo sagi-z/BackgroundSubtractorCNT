@@ -4,7 +4,7 @@
 
 @import "minima";
 
-.video-container {
+.media-container {
 	position:relative;
 	padding-bottom:56.25%;
 	padding-top:30px;
@@ -12,10 +12,24 @@
 	overflow:hidden;
 }
 
-.video-container iframe, .video-container object, .video-container embed {
+.media-container iframe, .media-container object, .media-container embed, .media-container img {
 	position:absolute;
 	top:0;
 	left:0;
 	width:100%;
 	height:100%;
 }
+
+.doxygen-search-container {
+	position:relative;
+	padding-bottom:40px;
+	padding-top:20px;
+	height:0;
+	overflow:hidden;
+}
+
+.doxygen-search-results-container {
+	position:relative;
+	overflow:auto;
+}
+
