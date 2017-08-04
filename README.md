@@ -30,7 +30,7 @@ Make sure these are installed first and that their executables are **in your pat
 
 ### Prepare to build
 ```
-git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git
+git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git --single-branch
 cd BackgroundSubtractorCNT
 mkdir build
 cd build
@@ -95,7 +95,7 @@ dir "c:\Program Files (x86)\NSIS\NSIS.exe"
 REM get the sources
 REM ===============
 cd c:\users\sagiz
-git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git
+git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git --single-branch
 cd BackgroundSubtractorCNT
 mkdir build
 cd build
@@ -179,7 +179,7 @@ c:\Users\sagiz>dir "c:\Program Files (x86)\NSIS\NSIS.exe"
 
 REM get the sources
 REM ===============
-c:\Users\sagiz>git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git
+c:\Users\sagiz>git clone https://github.com/sagi-z/BackgroundSubtractorCNT.git --single-branch
 Cloning into 'BackgroundSubtractorCNT'...
 … (didn’t copy-paste all the output lines)...
 
