@@ -39,7 +39,7 @@ TMP_MASTER=$HOME/tmp/$TMP_MASTER_DIRNAME
 rm -rf $TMP_MASTER
 mkdir -p $TMP_MASTER
 cd $HOME/tmp
-if ! `git clone $GIT_REPO_URL $TMP_MASTER_DIRNAME`; then
+if ! `git clone $GIT_REPO_URL -b master --single-branch $TMP_MASTER_DIRNAME`; then
     fatal "Failed to clone '$GIT_REPO_URL'"
 fi
 cd $TMP_MASTER
