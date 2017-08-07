@@ -9,7 +9,6 @@ using namespace cv::bgsegm;
 #include "bgsubcnt.h"
 
 using namespace cv;
-using namespace cv::bgsubcnt;
 using namespace std;
 
 const string keys =
@@ -29,7 +28,7 @@ int main( int argc, char** argv )
     VideoCapture cap;
 
     CommandLineParser parser(argc, argv, keys);
-    parser.about("BackgroundSubtractorCNT demo/benchmark/comparison");
+    parser.about("cv::bgsubcnt::BackgroundSubtractorCNT demo/benchmark/comparison");
     if (parser.has("help"))
     {
         parser.printMessage();
@@ -75,7 +74,7 @@ int main( int argc, char** argv )
         {
             fps = int(cap.get(CAP_PROP_FPS));
         }
-        pBgSub = createBackgroundSubtractorCNT(fps, true, fps*60);
+        pBgSub = cv::bgsubcnt::createBackgroundSubtractorCNT(fps, true, fps*60);
     }
     else if (type == "MOG2")
     {
