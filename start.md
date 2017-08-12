@@ -35,6 +35,13 @@ make
 ```
 (note that these are now the new defaults until you delete the *build/CMakeCache.txt* file)
 
+### Here is how to build for a specific python interpreter
+```
+cmake -DPYTHON_EXTENSION=ON -DPYTHON=/usr/bin/python3.5 ..
+make
+```
+(note that these are now the new defaults until you delete the *build/CMakeCache.txt* file)
+
 ### C++ Install simplest option 1 (Win/Linux/Mac):
 copy/move the bgsubcnt.cpp to your sources and bgsubcnt.h to your headers.
 
