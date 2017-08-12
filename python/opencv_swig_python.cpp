@@ -379,7 +379,7 @@ bool isMatType(PyObject *type)
     return PyArray_Check(type);
 }
 
-void initOpenCVSwig()
+void *initOpenCVSwig()
 {
     static bool wasInit = false;
     if (! wasInit)
@@ -387,4 +387,5 @@ void initOpenCVSwig()
         wasInit = true;
         import_array();
     }
+    return NULL;
 }
