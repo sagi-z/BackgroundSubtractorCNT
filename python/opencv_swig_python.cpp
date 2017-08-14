@@ -379,7 +379,11 @@ bool isMatType(PyObject *type)
     return PyArray_Check(type);
 }
 
+#if PY_MAJOR_VERSION >= 3
 void *initOpenCVSwig()
+#else
+void initOpenCVSwig()
+#endif
 {
     static bool wasInit = false;
     if (! wasInit)
@@ -387,5 +391,7 @@ void *initOpenCVSwig()
         wasInit = true;
         import_array();
     }
+#if PY_MAJOR_VERSION >= 3
     return NULL;
+#endif
 }
