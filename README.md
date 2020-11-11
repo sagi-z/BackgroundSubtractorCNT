@@ -1,4 +1,6 @@
-**UPDATE**: see more on the [project site](https://sagi-z.github.io/BackgroundSubtractorCNT/ "project site")
+Please cite using [![DOI](https://zenodo.org/badge/74020919.svg)](https://zenodo.org/badge/latestdoi/74020919)
+
+**See more** on the [project site](https://sagi-z.github.io/BackgroundSubtractorCNT/ "project site")
 
 The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 ===========================================================
