@@ -7,12 +7,14 @@ The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 
 * BackgroundSubtractorCNT is a drop in replacement API for the background subtraction solutions supplied with OpenCV 3.1.0 and above.
 * It is much **faster** than any other background subtraction solutions in OpenCV (without NVidia CUDA) on low spec hardware.
+* It is using an inovative new algorithm.
+* It is compared here to MOG2 which is the previous fastest at the time of writing.
 
 [For more details see my blog](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
 
 How much faster is it?
 ----------------------
-Here is an output of benchmarking on Raspberry Pi3 both *MOG2* and *CNT* BackgroundSubtractors:
+Here is an output of benchmarking on Raspberry Pi3 both *MOG2* (MOG2 was the previous fastest at the time) and *CNT* BackgroundSubtractors:
 ```
 pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
 Execution took 40.964450 seconds.
