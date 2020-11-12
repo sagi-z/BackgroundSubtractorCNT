@@ -277,6 +277,7 @@ make sure the include path and link path and library are set correctly.
     }
     else if (type == "MOG2")
     {
+    	// Comparing to MOG2 which is the previous fastest at the time of writing
         cv::Ptr<cv::BackgroundSubtractorMOG2> pBgSubMOG2 = cv::createBackgroundSubtractorMOG2();
         pBgSubMOG2->setDetectShadows(false);
         pBgSub = pBgSubMOG2;
@@ -321,7 +322,7 @@ cv2.ocl.setUseOpenCL(False)
 
 cap = cv2.VideoCapture('/home/userName/Downloads/opencv-3.1.0/samples/data/768x576.avi')
 
-#fgbg = cv2.createBackgroundSubtractorMOG2()
+#fgbg = cv2.createBackgroundSubtractorMOG2()  # MOG2 is the previous fastest at the time of writing
 fgbg = bgsubcnt.createBackgroundSubtractor()  # 2. New background subtractor
 
 while(1):
@@ -360,6 +361,7 @@ Usage: demo [params]
 
 * For benchmarking, use '-nogui', this was executed on Raspberry Pi3:
 ```
+# We'll benchmark the CNT algorithm against the MOG2 algorithm - the previous fastest at the time of writing
 pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="MOG2"
 Execution took 40.964450 seconds.
 pi@pilab2:~/tmp/mnt/build_pi3 $ ./demo -file=/home/pi/tmp/mnt2/samples/data/768x576.avi -nogui -type="CNT"
@@ -397,6 +399,7 @@ Usage: demo.py [params]
 
 * For benchmarking, use '--nogui', this was executed on Raspberry Pi3:
 ```
+# We'll benchmark the CNT algorithm against the MOG2 algorithm - the previous fastest at the time of writing
 pi@pilab2:~/BackgroundSubtractorCNT $ python python/demo.py --file=/home/pi/tmp/mnt2/samples/data/768x576.avi --nogui --type="MOG2"
 Execution took 40.964450 seconds.
 pi@pilab2:~/BackgroundSubtractorCNT $ python python/demo --file=/home/pi/tmp/mnt2/samples/data/768x576.avi --nogui --type="CNT"
