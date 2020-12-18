@@ -9,6 +9,7 @@ The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 * It is much **faster** than any other background subtraction solutions in OpenCV (without NVidia CUDA) on low spec hardware.
 * It is using an inovative new algorithm.
 * It is compared here to MOG2 which is the previous fastest at the time of writing.
+* Note that the latest version of this library is integrated into OpenCV, so no need to build/install it yourself.
 
 [For more details see my blog](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
 
@@ -23,6 +24,8 @@ Execution took 17.633301 seconds.
 ```
 
 ## Linux build and install
+
+**NOTE THAT THE LATEST VERSION OF THIS LIBRARY IS INTEGRATED INTO OpenCV, SO NO NEED TO BUILD/INSTALL IT YOURSELF**
 
 [Follow a video session for building C++ and python on Pi](https://www.youtube.com/watch?v=-FaVL1Otwds "BackgroundSubtractorCNT with python on Pi")
 
@@ -75,6 +78,8 @@ sudo dpkg -i ./bgsubcnt-1.1.3-Linux.deb
 ```
 
 ## Windows build and install
+
+**NOTE THAT THE LATEST VERSION OF THIS LIBRARY IS INTEGRATED INTO OpenCV, SO NO NEED TO BUILD/INSTALL IT YOURSELF**
 
 [Follow a video session for building C++ and python on windows](https://www.youtube.com/watch?v=JaXWv340Bbw "BackgroundSubtractorCNT with python on windows")
 
@@ -250,6 +255,9 @@ C++ Usage
 ---------
 
 ### Linux
+
+**NOTE THAT THE LATEST VERSION OF THIS LIBRARY IS INTEGRATED INTO OpenCV, SO NO NEED TO DO ANYTHING SPECIAL HERE FOR YOUR CODE**
+
 Assuming installation in '/usr/local', add to cflags '-I/usr/local/include' and to link flags '-L/usr/local/lib -lbgsubcnt'
 
 Here is a minimal *CMakeLists.txt* example:
@@ -269,6 +277,9 @@ TARGET_LINK_LIBRARIES (myapp ${BGSUBCNT_LIB} ${OpenCV_LIBS})
 ```
 
 ### Windows
+
+**NOTE THAT THE LATEST VERSION OF THIS LIBRARY IS INTEGRATED INTO OpenCV, SO NO NEED TO DO ANYTHING SPECIAL HERE FOR YOUR CODE**
+
 make sure the include path and link path and library are set correctly.
 
 ### C++ drop in replacement code example:
