@@ -9,7 +9,7 @@ The BackgroundSubtractorCNT project (CNT stands for 'CouNT)
 * It is much **faster** than any other background subtraction solutions in OpenCV (without NVidia CUDA) on low spec hardware.
 * It is using an inovative new algorithm.
 * It is compared here to MOG2 which is the previous fastest at the time of writing.
-* Note that the latest version of this library is integrated into OpenCV, so no need to build/install it yourself.
+* **Note that the latest version of this library is integrated into OpenCV, so no need to build/install it yourself.**
 
 [For more details see my blog](https://www.theimpossiblecode.com/blog/fastest-background-subtraction-opencv "the impossible code")
 
