@@ -6,6 +6,8 @@ permalink: /start/
 
 ## Linux build and install
 
+**Note that the latest version of this library is integrated into OpenCV, so no need to build/install it yourself.**
+
 [Follow a video session for building C++ and python on Pi](https://www.youtube.com/watch?v=-FaVL1Otwds "BackgroundSubtractorCNT with python on Pi")
 
 ### Build dependencies
@@ -57,6 +59,8 @@ sudo dpkg -i ./bgsubcnt-1.1.3-Linux.deb
 ```
 
 ## Windows build and install
+
+**Note that the latest version of this library is integrated into OpenCV, so no need to build/install it yourself.**
 
 [Follow a video session for building C++ and python on windows](https://www.youtube.com/watch?v=JaXWv340Bbw "BackgroundSubtractorCNT with python on windows")
 
@@ -323,6 +327,7 @@ cv2.ocl.setUseOpenCL(False)
 cap = cv2.VideoCapture('/home/userName/Downloads/opencv-3.1.0/samples/data/768x576.avi')
 
 #fgbg = cv2.createBackgroundSubtractorMOG2()  # MOG2 is the previous fastest at the time of writing
+#fgbg = cv2.bgsegm.createBackgroundSubtractorCNT()  # (This is the same implementation inside opencv-contrib)
 fgbg = bgsubcnt.createBackgroundSubtractor()  # 2. New background subtractor
 
 while(1):
