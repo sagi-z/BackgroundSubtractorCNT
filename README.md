@@ -349,6 +349,7 @@ cv2.ocl.setUseOpenCL(False)
 cap = cv2.VideoCapture('/home/userName/Downloads/opencv-3.1.0/samples/data/768x576.avi')
 
 #fgbg = cv2.createBackgroundSubtractorMOG2()
+#fgbg = cv2.bgsegm.createBackgroundSubtractorCNT()  # (This is the same implementation inside opencv-contrib)
 fgbg = bgsubcnt.createBackgroundSubtractor()  # 2. New background subtractor
 
 while(1):
